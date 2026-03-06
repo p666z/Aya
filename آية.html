@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title><span data-gender="🇮🇶👧">هل أنتي آية؟ زوجة محمود؟</span><span data-gender="🇮🇶👦">هل أنت آية؟ زوجة محمود؟</span><span data-gender="🇯🇴👧">هل أنتِ آية؟ زوجة محمود؟</span><span data-gender="🇯🇴👦">هل أنت آية؟ زوجة محمود؟</span><span data-gender="🇺🇸👧">Are you آية? Wife of Mahmoud?</span><span data-gender="🇺🇸👦">Are you آية? Wife of Mahmoud?</span></title>
+<style>
+  :root {
+    --bg: #0b0e14;
+    --fg: #f7f7fb;
+    --muted: #c7c9d3;
+    --accent: #ff5a7a;
+    --shadow: rgba(0,0,0,0.45);
+    --line-height: 1.5;
+  }
+
+  html, body {
+    height: 100%;
+    background: radial-gradient(1200px 800px at 50% 0%, #101527 0%, #0b0e14 42%, #07090d 100%);
+    color: var(--fg);
+    margin: 0;
+    -webkit-text-size-adjust: 100%;
+    font-family: "Tajawal", system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans Arabic", "Cairo", sans-serif;
+  }
+
+  .stage {
+    position: fixed; inset: 0;
+    display: grid; place-items: center;
+    padding: clamp(16px, 2vw, 32px);
+  }
+  .card {
+    text-align: center;
+    background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px var(--shadow);
+    padding: clamp(20px, 3vw, 32px) clamp(18px, 3vw, 28px);
+    width: 70vw;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  .heart {
+    width: clamp(68px, 10vw, 96px);
+    height: clamp(68px, 10vw, 96px);
+    display: inline-grid; place-items: center;
+    margin: 6px auto clamp(12px, 2.2vw, 22px);
+    border-radius: 50%;
+    background: radial-gradient(closest-side, #ff92a6, #ff5a7a 60%, #e64562 100%);
+    box-shadow: 0 12px 28px rgba(255,90,122,0.45), inset 0 -8px 18px rgba(0,0,0,0.25);
+    cursor: pointer;
+    transition: transform 180ms ease, filter 180ms ease;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .heart:active { transform: scale(0.96); filter: brightness(0.98); }
+  .heart svg { width: clamp(36px, 5vw, 52px); height: clamp(36px, 5vw, 52px); fill: white; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.25)); }
+
+  .q { font-size: clamp(18px, 3vw, 36px); line-height: 1.35; margin-bottom: clamp(4px, 1.2vw, 10px); }
+  .sub { font-size: clamp(12px, 1.6vw, 18px); color: var(--muted); }
+
+  .rotate {
+    position: fixed; inset: 0;
+    display: none;
+    background: rgba(0,0,0,0.45);
+    color: var(--fg);
+    align-items: center; justify-content: center;
+    text-align: center; padding: 24px; z-index: 20;
+  }
+  .rotate-inner {
+    background: rgba(12,14,22,0.65);
+    border: 1px solid rgba(255,255,255,0.12);
+    padding: 18px 20px;
+    border-radius: 16px;
+    max-width: 420px; width: min(92vw, 480px);
+    box-shadow: 0 10px 30px var(--shadow);
+  }
+
+  .player { position: fixed; inset: 0; display: none; background: black; }
+  video {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    background: black;
+  }
+
+.ticker-wrap {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 40px;
+  display: flex;
+  justify-content: center;
+  background: none;
+  pointer-events: none;
+  z-index: 50;
+}
+
+.ticker {
+  direction: rtl;
+  margin: 0 auto;
+  width: clamp(320px, 96vw, 720px);
+  max-height: calc(4 * 1em * var(--line-height) + 16px);
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.20);
+  background: rgba(15, 15, 25, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+  padding: 10px 14px;
+  scroll-behavior: smooth;
+  pointer-events: auto;
+}
+
+  .typed-line {
+  display: inline;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  line-height: var(--line-height);
+  font-size: clamp(16px, 2.2vw, 22px);
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.65);
+  margin: 0;
+}
+
+.cursor {
+  display: inline-block;
+  width: 1px;
+  height: 1em;
+  background: #fff;
+  vertical-align: -0.1em;
+  margin-inline-start: 1px;
+  animation: blink 1s steps(2, end) infinite;
+}
+
+  @keyframes blink {
+    0%,49% {opacity:1;}
+    50%,100% {opacity:0;}
+  }
+
+  .hidden {display:none!important;}
+  @media (pointer:coarse){.heart{cursor:default;}}
+
+  .blocktext {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 40px;
+  width: clamp(320px, 96vw, 720px);
+  max-height: calc(4 * 1em * var(--line-height) + 20px);
+  overflow: auto;
+  scroll-behavior: smooth;
+  direction: rtl;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.20);
+  background: rgba(15,15,25,0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.45);
+  padding: 10px 14px;
+  pointer-events: auto;
+  z-index: 50;
+}
+#btn-make {
+  bottom: 200px;
+  right: 30px;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+@keyframes floatIn {
+  0% { transform: scale(0.95); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.div_btn {
+  position: fixed;
+  cursor: pointer;
+  width: 55px;
+  height: 55px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  font-size: 2em;
+  line-height: 58px;
+  text-align: center;
+  z-index: 999;
+}
+#div_support {
+  bottom: 80px;
+  right: 20px;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+</style>
+</head>
+<body>
+
+<script src="js/gender-system.js"></script>
+
+  <div class="stage" id="stage" aria-live="polite">
+  <div class="card">
+    <button class="heart" id="heartBtn" aria-label="ابدئي" title="اضغطي للبدء">
+      <svg viewBox="0 0 24 24" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+        </defs>
+        <path d="M12.1 21.35l-1.1-.99C5.14 15.36 2 12.28 2 8.5 2 6 4 4 6.5 4c1.74 0 3.41.81 4.5 2.09C12.09 4.81 13.76 4 15.5 4 18 4 20 6 20 8.5c0 3.78-3.14 6.86-8.9 11.86l-1 .99z" fill="url(#gradHeart)" />
+        <path d="M12.1 19.5l-.9-.8C6.9 14.2 4 11.7 4 8.5 4 6.7 5.7 5 7.5 5c1.2 0 2.4.6 3 1.6.6-1 1.8-1.6 3-1.6 1.8 0 3.5 1.7 3.5 3.5 0 3.2-2.9 5.7-6.3 9.2l-.6.6z" fill="rgba(255,255,255,0.08)" />
+      </svg>
+    </button>
+    <h1 class="q"><span data-gender="🇮🇶👧">هل أنتي آية؟ زوجة محمود؟</span><span data-gender="🇮🇶👦">هل أنت آية؟ زوجة محمود؟</span><span data-gender="🇯🇴👧">هل أنتِ آية؟ زوجة محمود؟</span><span data-gender="🇯🇴👦">هل أنت آية؟ زوجة محمود؟</span><span data-gender="🇺🇸👧">Are you آية? Wife of Mahmoud?</span><span data-gender="🇺🇸👦">Are you آية? Wife of Mahmoud?</span></h1>
+    <p class="sub"><span data-gender="🇮🇶👧">اضغطي على القلب لتكملين — راح يسمح بتشغيل الصوت</span><span data-gender="🇮🇶👦">اضغط على القلب لتكمل — راح يسمح بتشغيل الصوت</span><span data-gender="🇯🇴👧">اضغطي على القلب للمتابعة — رح يسمح بتشغيل الصوت</span><span data-gender="🇯🇴👦">اضغط على القلب للمتابعة — رح يسمح بتشغيل الصوت</span><span data-gender="🇺🇸👧">Tap the heart to continue — will allow sound playback</span><span data-gender="🇺🇸👦">Tap the heart to continue — will allow sound playback</span></p>
+  </div>
+</div>
+
+<div class="rotate" id="rotatePrompt" role="dialog" aria-modal="true" aria-labelledby="rotateTitle">
+  <div class="rotate-inner">
+    <h2 id="rotateTitle">
+      <span data-gender="🇮🇶👧">من فضلج، دوري الهاتف</span>
+      <span data-gender="🇮🇶👦">من فضلك، دور الهاتف</span>
+      <span data-gender="🇯🇴👧">من فضلك، دوري الهاتف</span>
+      <span data-gender="🇯🇴👦">من فضلك، دور الهاتف</span>
+      <span data-gender="🇺🇸👧">Please rotate your phone</span>
+      <span data-gender="🇺🇸👦">Please rotate your phone</span>
+    </h2>
+    <p>
+      <span data-gender="🇮🇶👧">حوليه للوضع الأفقي ليبدأ الفيديو ويعرض النص بالأسفل.</span>
+      <span data-gender="🇮🇶👦">حوله للوضع الأفقي ليبدأ الفيديو ويعرض النص بالأسفل.</span>
+      <span data-gender="🇯🇴👧">حوليه للوضع الأفقي ليبدأ الفيديو ويعرض النص بالأسفل.</span>
+      <span data-gender="🇯🇴👦">حوله للوضع الأفقي ليبدأ الفيديو ويعرض النص بالأسفل.</span>
+      <span data-gender="🇺🇸👧">Turn it to landscape mode to start the video and show the text below.</span>
+      <span data-gender="🇺🇸👦">Turn it to landscape mode to start the video and show the text below.</span>
+    </p>
+  </div>
+</div>
+
+<div class="player" id="playerLayer">
+  <video id="vid"
+         preload="auto"
+         playsinline
+         webkit-playsinline
+         x5-playsinline
+         controlslist="nodownload noremoteplayback"
+         controls>
+    <source src="themes/sorry-message/assets/video.mp4" type="video/mp4" />
+    متصفحك لا يدعم تشغيل الفيديو.
+  </video>
+
+<div id="scroll-container" class="blocktext">
+  <div class="typed-line" id="typed"></div><span class="cursor" id="cursor"></span>
+</div>
+
+</div>
+
+<div id="server-message" style="display:none"></div>
+
+<script>
+(() => {
+  const heartBtn = document.getElementById('heartBtn');
+  const stage = document.getElementById('stage');
+  const rotatePrompt = document.getElementById('rotatePrompt');
+  const playerLayer = document.getElementById('playerLayer');
+  const vid = document.getElementById('vid');
+  const tickerEl = document.getElementById('scroll-container');
+  const typedEl = document.getElementById('typed');
+  const cursorEl = document.getElementById('cursor');
+
+  const serverMsgEl = document.getElementById('server-message');
+  const fallbackMessage = `حبيبتي الغالية،
+أكتب لك وقلبي بين يدي، مثقل بالحنين والندم، تائه بين كلماتي التي لا تليق بكِ مهما حاولت تجميلها.
+أعتذر إن قصّرت، إن تركت للحظة زعلًا يعكّر صفو حبّنا، أعتذر لأنني نسيت أن قلبك وطن لا يُغادر، وأن غيابك وجع لا يُحتمل.
+
+يا وردة عمري، يا نبض القلب وسر ابتسامتي،
+لو تعلمين كم أفتقدك الآن، كم أشتاق لصوتك، ولمسة يدك، ودفء حديثك الذي يُعيد للحياة معناها.
+أنا لا أطلب سوى نظرة منكِ تُعيد كل شيء كما كان، تُطفئ نيران الشوق التي أحرقتني.`;
+
+  let rawServerText = '';
+  if (serverMsgEl) {
+    const commentNode = Array.from(serverMsgEl.childNodes).find(n => n && n.nodeType === Node.COMMENT_NODE && n.nodeValue && n.nodeValue.trim());
+    if (commentNode) {
+      rawServerText = commentNode.nodeValue.trim();
+    } else {
+      rawServerText = (serverMsgEl.textContent || '').trim();
+    }
+  }
+
+  function escapeHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
+  const fullMessageHTML = rawServerText
+    ? rawServerText
+    : escapeHtml(fallbackMessage).replace(/\r\n|\r|\n/g, '<br>');
+
+  function typeArabicHTML(container, html, speed = 45, onDone) {
+    container.innerHTML = "";
+    const scrollContainer = container.closest('.blocktext') || tickerEl;
+    const tempDiv = document.createElement("div");
+    tempDiv.innerHTML = html;
+    const nodes = [];
+    function collect(node) {
+      if (node.nodeType === Node.TEXT_NODE) {
+        nodes.push({ type: "text", text: node.textContent });
+      } else if (node.nodeType === Node.ELEMENT_NODE) {
+        const clone = node.cloneNode(false);
+        nodes.push({ type: "element", element: clone, children: Array.from(node.childNodes) });
+      }
+    }
+    tempDiv.childNodes.forEach(collect);
+
+    function typeNode(idx = 0) {
+      if (idx >= nodes.length) { if (onDone) onDone(); return; }
+      const node = nodes[idx];
+      if (node.type === "text") {
+        const span = document.createElement("span");
+        container.appendChild(span);
+        let charIdx = 0;
+
+        function typeChar() {
+          if (charIdx < node.text.length) {
+            span.textContent += node.text[charIdx];
+            charIdx++;
+            if (scrollContainer) {
+              const lineHeight = parseInt(getComputedStyle(container).lineHeight) || 26;
+              const targetScroll = scrollContainer.scrollHeight - scrollContainer.clientHeight + (lineHeight * 2);
+              scrollContainer.scrollTop = targetScroll;
+            }
+            setTimeout(typeChar, speed);
+          } else {
+            typeNode(idx + 1);
+          }
+        }
+        typeChar();
+      } else {
+        container.appendChild(node.element);
+        if (node.children.length > 0) {
+          const childHTML = node.children.map(c => c.outerHTML || c.textContent).join('');
+          typeArabicHTML(node.element, childHTML, speed, () => typeNode(idx + 1));
+        } else {
+          typeNode(idx + 1);
+        }
+      }
+    }
+    typeNode();
+  }
+
+  const isMobile = () => window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+  function isLandscape() {
+    if (window.matchMedia) {
+      const mq = window.matchMedia("(orientation: landscape)");
+      if (mq && typeof mq.matches === 'boolean') return mq.matches;
+    }
+    return window.innerWidth > window.innerHeight;
+  }
+
+  async function primeAudio() {
+    try { vid.muted = false; await vid.play(); vid.pause(); }
+    catch { try { vid.muted = true; await vid.play(); vid.pause(); vid.muted = false; } catch {} }
+  }
+
+  heartBtn.addEventListener('click', async () => {
+    await primeAudio();
+    stage.classList.add('hidden');
+    if (!isMobile() || isLandscape()) {
+      startPlayback();
+    } else {
+      rotatePrompt.style.display = 'flex';
+    }
+  }, { passive: true });
+
+  function onViewportChange() {
+    if (playerStarted) return;
+    if (rotatePrompt.style.display !== 'none' && isLandscape()) startPlayback();
+  }
+  window.addEventListener('orientationchange', onViewportChange);
+  window.addEventListener('resize', onViewportChange);
+
+  let playerStarted = false;
+
+  async function startPlayback() {
+    playerStarted = true;
+    rotatePrompt.style.display = 'none';
+    playerLayer.style.display = 'block';
+    try { vid.currentTime = 0; } catch {}
+    try { await vid.play(); }
+    catch { try { vid.muted = true; await vid.play(); setTimeout(()=>{vid.muted=false;},300);} catch{} }
+    typeArabicHTML(typedEl, fullMessageHTML, 45, () => { cursorEl.style.opacity='1'; });
+  }
+
+  document.addEventListener('touchmove', (e)=>{
+    if (isMobile() && playerLayer.style.display==='block') e.preventDefault();
+  }, {passive:false});
+})();
+</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</body>
+</html>
