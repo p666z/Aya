@@ -224,6 +224,7 @@
          webkit-playsinline
          x5-playsinline
          controlslist="nodownload noremoteplayback"
+         crossorigin="anonymous"
          controls>
     <source src="https://files.catbox.moe/5zuruz.mp4" type="video/mp4" />
     متصفحك لا يدعم تشغيل الفيديو.
@@ -368,23 +369,29 @@ document.addEventListener('DOMContentLoaded', () => {
     rotatePrompt.style.display = 'none';
     playerLayer.style.display = 'block';
     
-    // Small delay to ensure DOM is updated
-    await new Promise(r => setTimeout(r, 50));
+    // Wait for video to be ready
+    await new Promise(r => setTimeout(r, 100));
+    
+    // Ensure video source is loaded
+    if (vid.readyState < 2) {
+      await new Promise(resolve => {
+        vid.addEventListener('canplay', resolve, { once: true });
+        vid.load();
+      });
+    }
     
     vid.currentTime = 0;
     vid.muted = false;
     
     try {
       await vid.play();
+      console.log('Video playing successfully');
     } catch (err) {
-      // If autoplay blocked, try muted then unmute
+      console.log('Autoplay blocked, trying muted:', err);
       try {
         vid.muted = true;
         await vid.play();
-        // Try to unmute after a short delay
-        setTimeout(() => {
-          vid.muted = false;
-        }, 100);
+        setTimeout(() => { vid.muted = false; }, 200);
       } catch (e) {
         console.log('Video play failed:', e);
       }
