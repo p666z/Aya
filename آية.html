@@ -339,9 +339,9 @@ document.addEventListener('DOMContentLoaded', () => {
     return window.innerWidth > window.innerHeight;
   }
 
-  async function primeAudio() {
-    try { vid.muted = false; await vid.play(); vid.pause(); }
-    catch { try { vid.muted = true; await vid.play(); vid.pause(); vid.muted = false; } catch {} }
+  function primeAudio() {
+    // Just unlock audio context, don't play video yet
+    vid.load();
   }
 
   heartBtn.addEventListener('click', function() {
@@ -367,9 +367,29 @@ document.addEventListener('DOMContentLoaded', () => {
     playerStarted = true;
     rotatePrompt.style.display = 'none';
     playerLayer.style.display = 'block';
-    try { vid.currentTime = 0; } catch {}
-    try { await vid.play(); }
-    catch { try { vid.muted = true; await vid.play(); setTimeout(()=>{vid.muted=false;},300);} catch{} }
+    
+    // Small delay to ensure DOM is updated
+    await new Promise(r => setTimeout(r, 50));
+    
+    vid.currentTime = 0;
+    vid.muted = false;
+    
+    try {
+      await vid.play();
+    } catch (err) {
+      // If autoplay blocked, try muted then unmute
+      try {
+        vid.muted = true;
+        await vid.play();
+        // Try to unmute after a short delay
+        setTimeout(() => {
+          vid.muted = false;
+        }, 100);
+      } catch (e) {
+        console.log('Video play failed:', e);
+      }
+    }
+    
     typeArabicHTML(typedEl, fullMessageHTML, 45, () => { cursorEl.style.opacity='1'; });
   }
 
