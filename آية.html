@@ -357,7 +357,9 @@
     catch { try { vid.muted = true; await vid.play(); vid.pause(); vid.muted = false; } catch {} }
   }
 
-  heartBtn.addEventListener('click', async () => {
+  async function handleHeartClick(e) {
+    e.preventDefault();
+    e.stopPropagation();
     await primeAudio();
     stage.classList.add('hidden');
     if (!isMobile() || isLandscape()) {
@@ -365,7 +367,10 @@
     } else {
       rotatePrompt.style.display = 'flex';
     }
-  }, { passive: true });
+  }
+
+  heartBtn.addEventListener('click', handleHeartClick, { passive: false });
+  heartBtn.addEventListener('touchstart', handleHeartClick, { passive: false });
 
   function onViewportChange() {
     if (playerStarted) return;
