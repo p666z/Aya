@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>
+      <span data-gender="🇮🇶👧 🇮🇶👦">زهور</span>
+      <span data-gender="🇯🇴👧 🇯🇴👦">زهور</span>
+      <span data-gender="🇺🇸👧 🇺🇸👦">Flowers</span>
+   </title>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+        /* Preview Banner */
+        .preview-banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #dc3545;
+            color: white;
+            text-align: center;
+            padding: 12px 50px 12px 20px;
+            font-weight: bold;
+            z-index: 9999;
+            font-size: 14px;
+            animation: slideDown 0.4s ease-out;
+            font-family: 'Arial', sans-serif;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+        }
+
+        .preview-banner-text {
+            display: inline-block;
+            max-width: calc(100% - 60px);
+            line-height: 1.4;
+        }
+
+        .preview-banner-close {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.25);
+            border: none;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            line-height: 1;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .preview-banner-close:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: translateY(-50%) rotate(90deg);
+        }
+
+        body.preview-active {
+            padding-top: 50px;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 600px) {
+            .preview-banner {
+                font-size: 12px;
+                padding: 10px 45px 10px 15px;
+            }
+            
+            body.preview-active {
+                padding-top: 45px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .preview-banner {
+                font-size: 10px;
+                padding: 8px 40px 8px 12px;
+            }
+            
+            body.preview-active {
+                padding-top: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="preview-banner" id="previewBanner">
+        <span class="preview-banner-text">
+            <strong>وضع المعاينة:</strong> هذا رابط معاينة فقط. تواصل مع متجرنا لإنشاء رابط شخصي لحبيبك!
+        </span>
+        <button class="preview-banner-close" onclick="closePreviewBanner()" aria-label="إغلاق">×</button>
+    </div>
+
+<!-- Load shared gender system -->
+<script src="js/gender-system.js"></script>
+
+<style>
+    html, body {
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    background: linear-gradient(-45deg, #000000, #1a0b1a, #050505, #1a0010);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+    @keyframes gradientBG {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    /* Click Animation */
+    .click-ripple {
+        position: fixed;
+        width: 20px;
+        height: 20px;
+        background: rgba(255, 255, 255, 0.4);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        animation: rippleAnim 0.6s linear forwards;
+        z-index: 9999;
+    }
+    @keyframes rippleAnim {
+        0% { width: 0; height: 0; opacity: 0.5; }
+        100% { width: 100px; height: 100px; opacity: 0; }
+    }
+
+    /* Overlay Loading */
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #000;
+        z-index: 100;
+        transition: opacity 0.5s ease;
+        flex-direction: column;
+    }
+
+    .overlay.hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .loading-message {
+        font-size: 13px;
+        text-shadow: 0px 2px 2px rgba(0, 0, 0, .8);
+        color: white;
+        text-align: center;
+        animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.5; }
+    }
+
+    .blocklove {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        animation: fadeInUp 0.8s ease;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .lovein {
+        background: #fff;
+        color: #FF0900;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        padding: 10px;
+        font-size: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all .3s ease;
+        cursor: pointer;
+        box-shadow: 0 4px 30px rgba(255, 255, 255, 0.3);
+    }
+
+    .lovein:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    }
+
+    .lovein svg {
+        width: 30px;
+        height: 30px;
+        fill: #FF0900;
+        animation: heartbeat 1.5s infinite;
+    }
+
+    @keyframes heartbeat {
+        0% { transform: scale(1); }
+        14% { transform: scale(1.3); }
+        28% { transform: scale(1); }
+        42% { transform: scale(1.3); }
+        70% { transform: scale(1); }
+    }
+
+    #ket {
+        margin-top: 20px;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+
+.container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: start;
+}
+/* Removed .clean-btn styles as it is moved to nav */
+
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+}
+
+.name {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    font-size: 4vw;
+    text-shadow: 0 0 5px #000000;
+    user-select: none;
+    pointer-events: none;
+}
+
+@media all and (min-width: 640px) {
+    .name {
+        font-size: 45px
+    }
+}
+
+/* Top nav */
+nav{
+    position:fixed; top:0; left:0; right:0; z-index:3;
+    display:flex; gap:clamp(12px, 4vw, 28px); justify-content:center; align-items:center;
+    padding:clamp(12px, 3vw, 18px) clamp(16px, 4vw, 20px); 
+    backdrop-filter:saturate(130%) blur(10px);
+    background:linear-gradient(to bottom, rgba(5,6,10,.65), rgba(5,6,10,0));
+    border-bottom:1px solid rgba(255,255,255,.06);
+    flex-wrap:wrap;
+    direction: ltr; /* Keep nav LTR for consistency or change to RTL if preferred */
+}
+nav a{
+    color: white; text-decoration:none; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size:clamp(.7rem, 2.2vw, .9rem); opacity:.85;
+    padding:clamp(6px, 1.5vw, 8px) clamp(6px, 2vw, 10px); 
+    transition:opacity .2s, transform .2s;
+    white-space:nowrap;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+nav a:hover{opacity:1; transform:translateY(-1px)}
+nav .dot{
+    width:clamp(5px, 1.5vw, 6px);
+    height:clamp(5px, 1.5vw, 6px);
+    border-radius:50%;
+    background:linear-gradient(135deg, #c39bff, #ff7fd1);
+    box-shadow:0 0 12px #ff7fd1;
+}
+.nav-fill{flex:1; min-width:0}
+
+/* Message Modal */
+.message-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(20, 22, 30, 0.6);
+    backdrop-filter: blur(10px) saturate(120%);
+    padding: 2rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    max-width: 80%;
+    max-height: 80vh;
+    overflow-y: auto;
+    text-align: center;
+    z-index: 10;
+    display: none;
+    box-shadow: 0 30px 80px rgba(0,0,0,.45);
+    direction: rtl;
+}
+.message-modal::-webkit-scrollbar {
+    width: 5px;
+}
+.message-modal::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+}
+.message-modal::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
+.message-modal.show {
+    display: block;
+}
+.close-msg {
+    margin-top: 1rem;
+    cursor: pointer;
+    text-decoration: underline;
+    opacity: 0.7;
+}
+
+/* Music Player Modal */
+.player-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(20, 22, 30, 0.75);
+    backdrop-filter: blur(15px) saturate(120%);
+    padding: 2rem;
+    border-radius: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 360px;
+    z-index: 10;
+    display: none;
+    box-shadow: 0 30px 80px rgba(0,0,0,.6);
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    direction: ltr;
+}
+.player-modal.show {
+    display: flex;
+}
+.player-album-art {
+    width: 280px;
+    height: 280px;
+    background: linear-gradient(135deg, #c39bff, #ff7fd1);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    margin-bottom: 10px;
+    box-shadow: 0 10px 30px rgba(195, 155, 255, 0.3);
+}
+.player-info-center {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 10px;
+}
+.player-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.player-artist {
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+.progress-wrapper {
+    width: 100%;
+}
+.player-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+.control-btn {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 1.2rem;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+.control-btn:hover {
+    opacity: 1;
+}
+.play-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+.progress-container {
+    width: 100%;
+    height: 4px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 2px;
+    cursor: pointer;
+    position: relative;
+}
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #c39bff, #ff7fd1);
+    border-radius: 2px;
+    width: 0%;
+    position: relative;
+}
+.progress-knob {
+    position: absolute;
+    right: -5px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+.progress-container:hover .progress-knob {
+    opacity: 1;
+}
+.time-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    opacity: 0.6;
+    margin-top: 5px;
+}
+</style>
+<div class="overlay" id="overlay">
+    <div class="loading-message" id="loadingMessage">
+        <span data-gender="🇮🇶👧">هاي ليلي<br>عمريي جاي نجهز الهدية ثواني بس</span>
+        <span data-gender="🇮🇶👦">هاي ليلي<br>عمري جاي نجهز الهدية ثواني بس</span>
+        <span data-gender="🇯🇴👧">هلا ليلي<br>حبيبتي بجهز الهدية كم ثانية بس</span>
+        <span data-gender="🇯🇴👦">هلا ليلي<br>حبيبي بجهز الهدية كم ثانية بس</span>
+        <span data-gender="🇺🇸👧">Hi ليلي<br>Just preparing your gift, one moment</span>
+        <span data-gender="🇺🇸👦">Hi ليلي<br>Just preparing your gift, one moment</span>
+    </div>
+
+    <div id="loveIn" class="blocklove">
+        <label class="lovein">
+            <svg class="line" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <g transform="translate(2.550170, 3.550158)">
+                    <path d="M0.371729633,8.89614246 C-0.701270367,5.54614246 0.553729633,1.38614246 4.07372963,0.249142462 C5.92372963,-0.347857538 8.05372963,-0.0298575377 9.50372963,1.48014246 C10.9537296,-0.0468575377 13.0837296,-0.347857538 14.9337296,0.249142462 C18.4537296,1.38614246 19.7187296,5.54614246 18.6357296,8.89614246 C16.9267296,14.2061425 9.50372963,18.6361425 9.50372963,18.6361425 C9.50372963,18.6361425 2.09372963,14.2261425 0.371729633,8.89614246 Z"></path>
+                </g>
+            </svg>
+        </label>
+        <p id="ket">
+            <span data-gender="🇮🇶👧">انتِ ليلي؟</span>
+            <span data-gender="🇮🇶👦">انت ليلي؟</span>
+            <span data-gender="🇯🇴👧">انتي ليلي؟</span>
+            <span data-gender="🇯🇴👦">انت ليلي؟</span>
+            <span data-gender="🇺🇸👧">Are you ليلي?</span>
+            <span data-gender="🇺🇸👦">Are you ليلي?</span>
+        </p>
+    </div>
+</div>
+
+<nav>
+    <span class="nav-fill"></span>
+    <a id="nav-msg">
+        <i class="fas fa-envelope"></i> 
+        <span data-gender="🇮🇶👧 🇮🇶👦">رسالة</span>
+        <span data-gender="🇯🇴👧 🇯🇴👦">رسالة</span>
+        <span data-gender="🇺🇸👧 🇺🇸👦">Message</span>
+    </a>
+    <a id="nav-audio">
+        <i class="fas fa-music"></i> 
+        <span data-gender="🇮🇶👧 🇮🇶👦">صوت</span>
+        <span data-gender="🇯🇴👧 🇯🇴👦">صوت</span>
+        <span data-gender="🇺🇸👧 🇺🇸👦">Audio</span>
+    </a>
+    <a id="nav-screenshot">
+        <i class="fas fa-camera"></i> 
+        <span data-gender="🇮🇶👧 🇮🇶👦">صورة</span>
+        <span data-gender="🇯🇴👧 🇯🇴👦">صورة</span>
+        <span data-gender="🇺🇸👧 🇺🇸👦">Photo</span>
+    </a>
+    <a id="nav-clear">
+        <i class="fas fa-eraser"></i> 
+        <span data-gender="🇮🇶👧 🇮🇶👦">مسح</span>
+        <span data-gender="🇯🇴👧 🇯🇴👦">مسح</span>
+        <span data-gender="🇺🇸👧 🇺🇸👦">Clear</span>
+    </a>
+    <span class="nav-fill" style="display:flex; justify-content:flex-end; align-items:center; gap:10px">
+      <span class="dot" aria-hidden="true"></span>
+    </span>
+</nav>
+
+<div class="message-modal" id="messageModal">
+    <div id="messageContent"></div>
+    <div id="rawMessage" style="display:none;"><span data-gender="🇮🇶👧 🇮🇶👦 🇯🇴👧 🇯🇴👦 🇺🇸👧 🇺🇸👦">هنا ستظهر الرسالة التي ترسلها انت الى المتجر عند شراء الرابط</span></div>
+    <div class="close-msg" id="closeMsg">
+        <span data-gender="🇮🇶👧">احبج واعشقج</span>
+        <span data-gender="🇮🇶👦">احبك واعشقك</span>
+        <span data-gender="🇯🇴👧">بحبك وبعشقك</span>
+        <span data-gender="🇯🇴👦">بحبك وبعشقك</span>
+        <span data-gender="🇺🇸👧">I love you</span>
+        <span data-gender="🇺🇸👦">I love you</span>
+    </div>
+</div>
+
+<div class="player-modal" id="playerModal">
+    <div class="close-msg" id="closePlayer" style="position: absolute; top: 15px; right: 15px; margin:0; font-size: 1.2rem; opacity: 0.6;"><i class="fas fa-times"></i></div>
+    
+    <div class="player-album-art" style="background-image: url('pimg.webp'); background-size: cover; background-position: center;">
+        <!-- Fallback icon if image fails or is empty, handled by JS or CSS if needed, but for now background image covers it -->
+    </div>
+
+    <div class="player-info-center">
+        <div class="player-title">ليلي</div>
+        <div class="player-artist">
+            <span data-gender="🇮🇶👧 🇮🇶👦">أغنية خاصة</span>
+            <span data-gender="🇯🇴👧 🇯🇴👦">أغنية خاصة</span>
+            <span data-gender="🇺🇸👧 🇺🇸👦">Special Song</span>
+        </div>
+    </div>
+
+    <div class="progress-wrapper">
+        <div class="progress-container" id="progressContainer">
+            <div class="progress-bar" id="progressBar">
+                <div class="progress-knob"></div>
+            </div>
+        </div>
+        <div class="time-info">
+            <span id="currentTime">0:00</span>
+            <span id="duration">0:00</span>
+        </div>
+    </div>
+
+    <div class="player-controls">
+        <button class="control-btn"><i class="fas fa-backward"></i></button>
+        <button class="control-btn play-btn" id="playBtn"><i class="fas fa-play"></i></button>
+        <button class="control-btn"><i class="fas fa-forward"></i></button>
+    </div>
+</div>
+
+<audio id="bgAudio" loop>
+    <source src="static/preview.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+   <canvas id="canvas"></canvas>
+</div>
+
+<div class="name">
+   <span data-gender="🇮🇶👧">اضغطي لإضافة الزهور</span>
+   <span data-gender="🇮🇶👦">اضغط لإضافة الزهور</span>
+   <span data-gender="🇯🇴👧">اضغطي لإضافة الزهور</span>
+   <span data-gender="🇯🇴👦">اضغط لإضافة الزهور</span>
+   <span data-gender="🇺🇸👧">Click to add flowers</span>
+   <span data-gender="🇺🇸👦">Click to add flowers</span>
+</div>
+
+<script type="x-shader/x-fragment" id="fragmentShader">
+    #define PI 3.14159265359
+
+    uniform float u_ratio;
+    uniform vec2 u_cursor;
+    uniform float u_stop_time;
+    uniform float u_clean;
+    uniform vec2 u_stop_randomizer;
+
+    uniform sampler2D u_texture;
+    varying vec2 vUv;
+
+    // --------------------------------
+    // 2D noise
+
+    vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+    vec2 mod289(vec2 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+    vec3 permute(vec3 x) { return mod289(((x*34.0)+1.0)*x); }
+    float snoise(vec2 v) {
+        const vec4 C = vec4(0.211324865405187, 0.366025403784439, -0.577350269189626, 0.024390243902439);
+        vec2 i = floor(v + dot(v, C.yy));
+        vec2 x0 = v - i + dot(i, C.xx);
+        vec2 i1;
+        i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+        vec4 x12 = x0.xyxy + C.xxzz;
+        x12.xy -= i1;
+        i = mod289(i);
+        vec3 p = permute(permute(i.y + vec3(0.0, i1.y, 1.0)) + i.x + vec3(0.0, i1.x, 1.0));
+        vec3 m = max(0.5 - vec3(dot(x0, x0), dot(x12.xy, x12.xy), dot(x12.zw, x12.zw)), 0.0);
+        m = m*m;
+        m = m*m;
+        vec3 x = 2.0 * fract(p * C.www) - 1.0;
+        vec3 h = abs(x) - 0.5;
+        vec3 ox = floor(x + 0.5);
+        vec3 a0 = x - ox;
+        m *= 1.79284291400159 - 0.85373472095314 * (a0*a0 + h*h);
+        vec3 g;
+        g.x = a0.x * x0.x + h.x * x0.y;
+        g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+        return 130.0 * dot(m, g);
+    }
+
+
+    float get_flower_shape(vec2 _p, float _pet_n, float _angle, float _outline) {
+        _angle *= 3.;
+
+        _p = vec2(_p.x * cos(_angle) - _p.y * sin(_angle),
+        _p.x * sin(_angle) + _p.y * cos(_angle));
+
+        float a = atan(_p.y, _p.x);
+
+        float flower_sectoral_shape = pow(abs(sin(a * _pet_n)), .4) + .25;
+
+        vec2 flower_size_range = vec2(.03, .1);
+        float size = flower_size_range[0] + u_stop_randomizer[0] * flower_size_range[1];
+
+        float flower_radial_shape = pow(length(_p) / size, 2.);
+        flower_radial_shape -= .1 * sin(8. * a); // add noise
+        flower_radial_shape = max(.1, flower_radial_shape);
+        flower_radial_shape += smoothstep(0., 0.03, -_p.y + .2 * abs(_p.x));
+
+        float grow_time = step(.25, u_stop_time) * pow(u_stop_time, .3);
+        float flower_shape = 1. - smoothstep(0., flower_sectoral_shape, _outline * flower_radial_shape / grow_time);
+
+        flower_shape *= (1. - step(1., grow_time));
+
+        return flower_shape;
+    }
+
+    float get_stem_shape(vec2 _p, vec2 _uv, float _w, float _angle) {
+
+		  _w = max(.004, _w);
+		 
+        float x_offset = _p.y * sin(_angle);
+        x_offset *= pow(3. * _uv.y, 2.);
+        _p.x -= x_offset;
+
+        // add horizontal noise to the cursor coordinale
+        float noise_power = .5;
+        float cursor_horizontal_noise = noise_power * snoise(2. * _uv * u_stop_randomizer[0]);
+        cursor_horizontal_noise *= pow(dot(_p.y, _p.y), .6);// moise to be zero at cursor
+        cursor_horizontal_noise *= pow(dot(_uv.y, _uv.y), .3);// moise to be zero at bottom
+        _p.x += cursor_horizontal_noise;
+
+        // vertical line through the cursor point (_p.x)
+        float left = smoothstep(-_w, 0., _p.x);
+        float right = 1. - smoothstep(0., _w, _p.x);
+        float stem_shape = left * right;
+
+        // make it grow + don't go up to the cursor point
+        float grow_time = 1. - smoothstep(0., .2, u_stop_time);
+        float stem_top_mask = smoothstep(0., pow(grow_time, .5), .03 -_p.y);
+        stem_shape *= stem_top_mask;
+
+        // stop drawing once done
+        stem_shape *= (1. - step(.17, u_stop_time));
+
+        return stem_shape;
+    }
+
+    void main() {
+
+        vec3 base = texture2D(u_texture, vUv).xyz;
+
+        vec2 uv = vUv;
+        uv.x *= u_ratio;
+        vec2 cursor = vUv - u_cursor.xy;
+        cursor.x *= u_ratio;
+        
+        vec3 stem_color = vec3(.1 + u_stop_randomizer[0] * .6, .6, .2);
+        vec3 flower_color = vec3(.6 + .5 * u_stop_randomizer[1], .1, .9 - .5 * u_stop_randomizer[1]);
+
+        float angle = .5 * (u_stop_randomizer[0] - .5);
+
+        float stem_shape = get_stem_shape(cursor, uv, .003, angle);
+        stem_shape += get_stem_shape(cursor + vec2(0., .2 + .5 * u_stop_randomizer[0]), uv, .003, angle);
+        float stem_mask = 1. - get_stem_shape(cursor, uv, .004, angle);
+        stem_mask -= get_stem_shape(cursor + vec2(0., .2 + .5 * u_stop_randomizer[0]), uv, .004, angle);
+
+        float petals_back_number = 1. + floor(u_stop_randomizer[0] * 2.);
+        float angle_offset = -(2. * step(0., angle) - 1.) * .1 * u_stop_time;
+        float flower_back_shape = get_flower_shape(cursor, petals_back_number, angle + angle_offset, 1.5);
+        float flower_back_mask = 1. - get_flower_shape(cursor, petals_back_number, angle + angle_offset, 1.6);
+
+        float petals_front_number = 2. + floor(u_stop_randomizer[1] * 2.);
+        float flower_front_shape = get_flower_shape(cursor, petals_front_number, angle, 1.);
+        float flower_front_mask = 1. - get_flower_shape(cursor, petals_front_number, angle, .95);
+
+        vec3 color = base;
+        color *= stem_mask;
+        color *= flower_back_mask;
+        color *= flower_front_mask;
+
+        color += (stem_shape * stem_color);
+
+        color += (flower_back_shape * (flower_color + vec3(0., .8 * u_stop_time, 0.)));
+        color += (flower_front_shape * flower_color);
+
+        color.r *= 1. - (.5 * flower_back_shape * flower_front_shape);
+        color.b *= 1. - (flower_back_shape * flower_front_shape);
+
+
+        color *= u_clean;
+
+        gl_FragColor = vec4(color, 1.);
+    }
+
+</script>
+
+<script type="x-shader/x-vertex" id="vertexShader">
+    varying vec2 vUv;
+    void main() {
+        vUv = uv;
+        gl_Position = vec4(position, 1.);
+    }
+</script>
+
+<script type="module">
+    import * as THREE from 'https://cdn.skypack.dev/three@0.133.1/build/three.module'
+
+const canvasEl = document.querySelector('#canvas')
+
+const navClear = document.getElementById('nav-clear');
+const navMsg = document.getElementById('nav-msg');
+const navAudio = document.getElementById('nav-audio');
+const navScreenshot = document.getElementById('nav-screenshot');
+const messageModal = document.getElementById('messageModal');
+const closeMsg = document.getElementById('closeMsg');
+const bgAudio = document.getElementById('bgAudio');
+const nameText = document.querySelector('.name');
+
+// Overlay Elements
+const overlay = document.getElementById('overlay');
+const loadingMessage = document.getElementById('loadingMessage');
+const loveIn = document.getElementById('loveIn');
+
+// Player Elements
+const playerModal = document.getElementById('playerModal');
+const closePlayer = document.getElementById('closePlayer');
+const playBtn = document.getElementById('playBtn');
+const progressBar = document.getElementById('progressBar');
+const progressContainer = document.getElementById('progressContainer');
+const currentTimeEl = document.getElementById('currentTime');
+const durationEl = document.getElementById('duration');
+
+const pointer = {
+	x: 0.66,
+	y: 0.3,
+	clicked: true,
+}
+
+// for codepen preview
+window.setTimeout(() => {
+	pointer.x = 0.75
+	pointer.y = 0.5
+	pointer.clicked = true
+}, 700)
+
+// Overlay Logic
+setTimeout(function() {
+    loadingMessage.style.display = 'none';
+    loveIn.style.display = 'flex';
+}, 3000);
+
+loveIn.addEventListener('click', function() {
+    // Play audio
+    bgAudio.play().then(() => {
+        playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+        isPlaying = true;
+    }).catch(e => {
+        console.log("Audio play failed", e);
+    });
+
+    // Hide overlay
+    overlay.classList.add('hidden');
+    setTimeout(() => {
+        overlay.style.display = 'none';
+    }, 500);
+});
+
+let basicMaterial, shaderMaterial
+let renderer = new THREE.WebGLRenderer({
+	canvas: canvasEl,
+	alpha: true,
+    preserveDrawingBuffer: true // Required for screenshot
+})
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+let sceneShader = new THREE.Scene()
+let sceneBasic = new THREE.Scene()
+let camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 10)
+let clock = new THREE.Clock()
+
+let renderTargets = [
+	new THREE.WebGLRenderTarget(window.innerWidth, window.innerHeight),
+	new THREE.WebGLRenderTarget(window.innerWidth, window.innerHeight),
+]
+
+createPlane()
+updateSize()
+
+window.addEventListener('resize', () => {
+	updateSize()
+	cleanCanvas()
+})
+
+render()
+
+let isTouchScreen = false
+
+window.addEventListener('click', e => {
+    // Hide the instruction text on first click
+    if (nameText.style.opacity !== '0') {
+        nameText.style.transition = 'opacity 0.5s';
+        nameText.style.opacity = '0';
+    }
+
+	if (!isTouchScreen) {
+		pointer.x = e.pageX / window.innerWidth
+		pointer.y = e.pageY / window.innerHeight
+		pointer.clicked = true
+	}
+})
+window.addEventListener('touchstart', e => {
+    // Hide the instruction text on first touch
+    if (nameText.style.opacity !== '0') {
+        nameText.style.transition = 'opacity 0.5s';
+        nameText.style.opacity = '0';
+    }
+
+	isTouchScreen = true
+	pointer.x = e.targetTouches[0].pageX / window.innerWidth
+	pointer.y = e.targetTouches[0].pageY / window.innerHeight
+	pointer.clicked = true
+})
+
+navClear.addEventListener('click', cleanCanvas)
+
+navMsg.addEventListener('click', () => {
+    messageModal.classList.add('show');
+    const rawMsg = getVisibleHTML(document.getElementById('rawMessage'));
+    const msgContent = document.getElementById('messageContent');
+    typeArabicHTML(msgContent, rawMsg, 50);
+});
+
+closeMsg.addEventListener('click', () => {
+    messageModal.classList.remove('show');
+});
+
+// Screenshot Logic
+navScreenshot.addEventListener('click', () => {
+    // Since it's a WebGL canvas, we can just use toDataURL
+    // But we need to make sure we capture the current state
+    // Note: preserveDrawingBuffer: true might be needed in WebGLRenderer if the canvas is blank
+    // Let's check if we can just grab it.
+    
+    try {
+        const link = document.createElement('a');
+        link.download = 'flowers-for-ليلي.png';
+        link.href = canvasEl.toDataURL('image/png');
+        link.click();
+    } catch (e) {
+        console.error("Screenshot failed", e);
+        alert("Could not take screenshot. Security restrictions may apply.");
+    }
+});
+
+// Audio Player Logic
+let isPlaying = false;
+
+function toggleAudio() {
+    if (isPlaying) {
+        bgAudio.pause();
+        playBtn.innerHTML = '<i class="fas fa-play"></i>';
+        isPlaying = false;
+    } else {
+        bgAudio.play().then(() => {
+            playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            isPlaying = true;
+        }).catch(e => {
+            console.log("Audio play failed", e);
+            isPlaying = false;
+        });
+    }
+}
+
+navAudio.addEventListener('click', () => {
+    playerModal.classList.add('show');
+});
+
+closePlayer.addEventListener('click', () => {
+    playerModal.classList.remove('show');
+});
+
+playBtn.addEventListener('click', toggleAudio);
+
+bgAudio.addEventListener('timeupdate', () => {
+    const percent = (bgAudio.currentTime / bgAudio.duration) * 100;
+    progressBar.style.width = `${percent}%`;
+    
+    const currentMins = Math.floor(bgAudio.currentTime / 60);
+    const currentSecs = Math.floor(bgAudio.currentTime % 60);
+    const durationMins = Math.floor(bgAudio.duration / 60) || 0;
+    const durationSecs = Math.floor(bgAudio.duration % 60) || 0;
+    
+    currentTimeEl.textContent = `${currentMins}:${currentSecs < 10 ? '0' : ''}${currentSecs}`;
+    durationEl.textContent = `${durationMins}:${durationSecs < 10 ? '0' : ''}${durationSecs}`;
+});
+
+progressContainer.addEventListener('click', (e) => {
+    const width = progressContainer.clientWidth;
+    const clickX = e.offsetX;
+    const duration = bgAudio.duration;
+    
+    bgAudio.currentTime = (clickX / width) * duration;
+});
+
+// Click Animation
+document.addEventListener('click', function(e) {
+    const ripple = document.createElement('div');
+    ripple.className = 'click-ripple';
+    ripple.style.left = e.clientX + 'px';
+    ripple.style.top = e.clientY + 'px';
+    document.body.appendChild(ripple);
+    setTimeout(() => ripple.remove(), 1000);
+});
+
+function cleanCanvas() {
+	pointer.vanishCanvas = true
+	setTimeout(() => {
+		pointer.vanishCanvas = false
+	}, 50)
+}
+
+function createPlane() {
+	shaderMaterial = new THREE.ShaderMaterial({
+		uniforms: {
+			u_stop_time: { type: 'f', value: 0 },
+			u_stop_randomizer: {
+				type: 'v2',
+				value: new THREE.Vector2(Math.random(), Math.random()),
+			},
+			u_cursor: { type: 'v2', value: new THREE.Vector2(pointer.x, pointer.y) },
+			u_ratio: { type: 'f', value: window.innerWidth / window.innerHeight },
+			u_texture: { type: 't', value: null },
+			u_clean: { type: 'f', value: 1 },
+		},
+		vertexShader: document.getElementById('vertexShader').textContent,
+		fragmentShader: document.getElementById('fragmentShader').textContent,
+	})
+	basicMaterial = new THREE.MeshBasicMaterial()
+	const planeGeometry = new THREE.PlaneGeometry(2, 2)
+	const planeBasic = new THREE.Mesh(planeGeometry, basicMaterial)
+	const planeShader = new THREE.Mesh(planeGeometry, shaderMaterial)
+	sceneBasic.add(planeBasic)
+	sceneShader.add(planeShader)
+}
+
+function render() {
+	shaderMaterial.uniforms.u_clean.value = pointer.vanishCanvas ? 0 : 1
+	shaderMaterial.uniforms.u_texture.value = renderTargets[0].texture
+
+	if (pointer.clicked) {
+		shaderMaterial.uniforms.u_cursor.value = new THREE.Vector2(
+			pointer.x,
+			1 - pointer.y
+		)
+		shaderMaterial.uniforms.u_stop_randomizer.value = new THREE.Vector2(
+			Math.random(),
+			Math.random()
+		)
+		shaderMaterial.uniforms.u_stop_time.value = 0
+		pointer.clicked = false
+	}
+	shaderMaterial.uniforms.u_stop_time.value += clock.getDelta()
+
+	renderer.setRenderTarget(renderTargets[1])
+	renderer.render(sceneShader, camera)
+	basicMaterial.map = renderTargets[1].texture
+	renderer.setRenderTarget(null)
+	renderer.render(sceneBasic, camera)
+
+	let tmp = renderTargets[0]
+	renderTargets[0] = renderTargets[1]
+	renderTargets[1] = tmp
+
+	requestAnimationFrame(render)
+}
+
+function updateSize() {
+	shaderMaterial.uniforms.u_ratio.value = window.innerWidth / window.innerHeight
+	renderer.setSize(window.innerWidth, window.innerHeight)
+}
+
+</script>
+<script>
+        function closePreviewBanner() {
+            const banner = document.getElementById('previewBanner');
+            banner.style.animation = 'slideUp 0.3s ease-in';
+            
+            setTimeout(() => {
+                banner.style.display = 'none';
+                document.body.classList.remove('preview-active');
+            }, 300);
+        }
+
+        // Always show the banner on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            document.body.classList.add('preview-active');
+        });
+
+        // Optional: Close on ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closePreviewBanner();
+            }
+        });
+    </script>
+</body>
+</html>

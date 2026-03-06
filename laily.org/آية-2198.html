@@ -1,0 +1,1618 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="utf-8" />
+    <title>هدية الى آية</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
+    <script src="https://unpkg.com/typeit@8.7.0/dist/index.umd.js"></script>
+
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    body {
+        background: linear-gradient(0.25turn, rgb(0, 38, 77), rgb(0, 38, 70));
+        background: #000;
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+        overflow: hidden;
+        color: black;
+    }
+
+    #container {
+        width: 80%;
+        margin: 20px auto;
+        min-height: 650px;
+        margin-top: 150px;
+        color: black;
+    }
+
+    @media screen and (max-width: 400px) {
+        #container {
+            width: 100%;
+            margin: 50% auto;
+            min-height: 800px;
+        }
+    }
+
+    .wrapper {
+        position: fixed;
+    }
+
+    .box div {
+        position: fixed;
+        width: 60px;
+        height: 60px;
+        background-color: transparent;
+        border: 6px solid rgba(255, 182, 193, 0.8);
+        border-radius: 50%;
+    }
+
+    .box div:nth-child(1) {
+        top: 12%;
+        left: 42%;
+        animation: animate 10s linear infinite;
+    }
+
+    .box div:nth-child(2) {
+        top: 70%;
+        left: 50%;
+        animation: animate 7s linear infinite;
+    }
+
+    .box div:nth-child(3) {
+        top: 17%;
+        left: 6%;
+        animation: animate 9s linear infinite;
+    }
+
+    .box div:nth-child(4) {
+        top: 20%;
+        left: 60%;
+        animation: animate 10s linear infinite;
+    }
+
+    .box div:nth-child(5) {
+        top: 67%;
+        left: 10%;
+        animation: animate 6s linear infinite;
+    }
+
+    .box div:nth-child(6) {
+        top: 80%;
+        left: 70%;
+        animation: animate 12s linear infinite;
+    }
+
+    .box div:nth-child(7) {
+        top: 60%;
+        left: 80%;
+        animation: animate 15s linear infinite;
+    }
+
+    .box div:nth-child(8) {
+        top: 32%;
+        left: 25%;
+        animation: animate 16s linear infinite;
+    }
+
+    .box div:nth-child(9) {
+        top: 90%;
+        left: 25%;
+        animation: animate 9s linear infinite;
+    }
+
+    .box div:nth-child(10) {
+        top: 20%;
+        left: 80%;
+        animation: animate 5s linear infinite;
+    }
+
+    @keyframes animate {
+        0% {
+            transform: scale(0) translateY(0) rotate(0);
+            opacity: .8;
+        }
+        100% {
+            transform: scale(1.3) translateY(-90px) rotate(360deg);
+            opacity: 0;
+        }
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Inter&family=Itim&display=swap');
+    :root {
+        --itim: 'Itim', cursive;
+        --inter: 'Inter', sans-serif;
+    }
+
+    html,
+    body {
+        position: relative;
+        height: 100%;
+    }
+
+    body {
+        font-family: 'Itim', cursive;
+        font-size: 14px;
+        color: #fff;
+        text-shadow: 0px 2px 2px rgba(0, 0, 0, .5);
+        margin: 0;
+        padding: 0;
+    }
+
+    #bodyblur {
+        opacity: .15;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, .5);
+        transition: all 1s ease;
+    }
+
+    #sthisblur {
+        backdrop-filter: blur(3px);
+        -webkit-backdrop-filter: blur(3px);
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+    #wallpaper {
+        /*animation: jj 7s infinite;*/
+        width: 100%;
+        height: 100%;
+        transform: scale(1.3);
+        transition: all 1.3s ease;
+    }
+
+    #wallpaper2,
+    #wallpaper3,
+    #wallpaper4 {
+        display: none
+    }
+
+    @keyframes jj {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.3);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    p {
+        margin-left: 50px;
+        margin-right: 70px;
+        text-align: left
+    }
+
+    #ket {
+        margin: 20px
+    }
+
+    .swiper {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: -100px;
+    }
+
+    .swiper-slide img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .swiper-pagination {
+        margin-bottom: 25vh
+    }
+
+    .swiper-pagination-bullet-active {
+        background-color: #fff !important;
+        opacity: 1 !important
+    }
+
+    .swiper-pagination-bullet {
+        background-color: rgba(255, 255, 255, 1) !important;
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+        display: flex;
+        top: unset;
+        bottom: -100px
+    }
+
+    .sembunyi {
+        display: none !important;
+    }
+
+    .stiker {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 20px;
+        transition: all .75s ease
+    }
+
+    .stiker img {
+        width: 90px;
+        height: 90px;
+        box-shadow: 0 4px 30px rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        background: rgba(255, 255, 255, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        padding: 10px;
+    }
+
+    .stiker img.sty2 {
+        background: none;
+        filter: drop-shadow(0 4px 8px rgba(255, 255, 255, 0.2));
+        box-shadow: none;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        border: none;
+        border-radius: 0;
+        padding: 0;
+        width: auto;
+        height: 90px;
+    }
+
+    b.merah {
+        color: red
+    }
+
+    b.kuning {
+        color: yellow
+    }
+
+    b.putih {
+        text-shadow: none;
+        padding-left: 8px;
+        padding-right: 8px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        background-color: white;
+        border-radius: 12px
+    }
+
+    span.garismerah {
+        border-bottom: 2px solid red
+    }
+
+    span.gariskuning {
+        border-bottom: 2px solid yellow
+    }
+
+    p {
+        color: white;
+        font-size: 15px;
+        line-height: 1.5em;
+    }
+
+    .scale0 {
+        opacity: 0;
+        transform: scale(0);
+        transition: all .9s ease;
+    }
+
+    .scale1 {
+        opacity: 1;
+        transform: scale(1);
+        transition: all .9s ease;
+    }
+
+    svg {
+        vertical-align: middle;
+        width: 22px;
+        height: 22px;
+        fill: #fff
+    }
+
+    .heart-icon {
+        z-index: 100;
+        width: 30px;
+        height: 30px;
+        position: fixed;
+        animation: heartMove linear 1;
+        top: -10vh;
+    }
+
+    @keyframes heartMove {
+        0% {
+            transform: translateY(-10vh);
+        }
+        100% {
+            transform: translateY(100vh);
+        }
+    }
+
+    svg.line {
+        fill: none;
+        stroke: #fff;
+        stroke-width: 2;
+        animation: moving .7s linear infinite alternate;
+    }
+
+    .spin {
+        animation: spin 3s linear infinite alternate;
+    }
+
+    @keyframes spin {
+        from {
+            transform: rotate(20deg);
+        }
+        to {
+            transform: rotate(-20deg);
+        }
+    }
+
+    @keyframes moving {
+        from {
+            transform: translateY(0);
+        }
+        to {
+            transform: translateY(3px);
+        }
+    }
+
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #000;
+        z-index: 100;
+    }
+
+    .loading-message {
+        font-size: 13px;
+        text-shadow: 0px 2px 2px rgba(0, 0, 0, .8);
+        color: white;
+        text-align: center;
+    }
+
+    .blocklove {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .lovein {
+        background: #fff;
+        color: #FF0900;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        padding: 10px;
+        font-size: 30px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        transition: all .3s ease;
+    }
+
+    .lovein:hover {
+        transform: scale(.9);
+        color: #FF0900;
+    }
+
+    .lovein svg {
+        stroke: #FF0600;
+        width: 30px;
+        height: 30px
+    }
+
+    .blocktext {
+        margin-top: 10px;
+        position: relative;
+        width: 100%;
+        height: 160px;
+        overflow: auto;
+        background-color: none;
+    }
+
+    .tombol {
+        background-color: rgba(255, 255, 255, 0);
+        border-radius: 50px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-transition: all .2s ease-out;
+        transition: all .2s ease-out
+    }
+
+    .tombol svg {
+        margin: auto;
+        fill: #ffd4d4;
+        stroke: #ff0000;
+        width: 60px;
+        height: 60px;
+        animation: spin2 1s linear infinite alternate;
+    }
+
+    #Tombol {
+        margin-top: 20px;
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        list-style: none;
+        transition: all 1s ease;
+    }
+
+    #Tombol a {
+        display: inline-flex;
+        align-items: center;
+        margin: 0;
+        margin: 10px;
+        transition: all .2s ease;
+        padding: 10px;
+        outline: 0;
+        border: 1px solid white;
+        border-radius: 12px;
+        line-height: 15px;
+        background: rgba(0, 0, 0, .3);
+        color: white;
+        font-size: 13px;
+        font-weight: 700;
+        white-space: nowrap;
+        overflow: hidden;
+        box-shadow: rgba(255, 255, 255, 0.15) 0px 7px 29px 0px;
+        z-index: 1
+    }
+
+    #Tombol,
+    #Tombol2,
+    #TombolWA {
+        position: relative;
+        opacity: 0;
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        list-style: none;
+        transition: all 1s ease;
+    }
+
+    #Tombol a,
+    #Tombol2 a,
+    #TombolWA a {
+        display: inline-flex;
+        align-items: center;
+        margin: 0;
+        margin: 10px;
+        transition: all .2s ease;
+        padding: 10px;
+        outline: 0;
+        border: 2px solid white;
+        border-radius: 12px;
+        line-height: 15px;
+        background: rgba(255, 182, 193, .3);
+        color: white;
+        font-size: 13px;
+        font-weight: 700;
+        white-space: nowrap;
+        overflow: hidden;
+        box-shadow: rgba(255, 255, 255, 0.15) 0px 7px 29px 0px;
+        z-index: 1
+    }
+
+    .swal2-modal>* {
+        font-size: 16px;
+        color: white
+    }
+
+    .swal2-title {
+        line-height: 1.3em;
+        font-size: 17px;
+        text-align: center;
+        padding: 15px 30px 0 30px;
+    }
+
+    .swal2-timer-progress-bar-container>* {
+        opacity: .7;
+        background: #00B6FF;
+        margin: 0 14px
+    }
+
+    .swal2-modal {
+        background: rgba(0, 0, 0, 1);
+        backdrop-filter: blur(0);
+        -webkit-backdrop-filter: blur(0);
+        box-shadow: 0 4px 30px rgba(255, 255, 255, 0.3);
+        border: 1px solid rgba(255, 255, 255, 1);
+        border-radius: 12px;
+        max-width: 325px;
+        top: -60px;
+    }
+
+    .swal2-image {
+        background: rgba(255, 255, 255, 0.5);
+        box-shadow: 0 4px 30px rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        padding: 10px;
+    }
+
+    .swal2-styled.swal2-confirm,
+    .swal2-styled.swal2-cancel {
+        position: relative;
+        background-color: #4839eb;
+        color: #fff;
+        border-radius: 18px;
+        z-index: 1;
+        transition: all 0.2s;
+    }
+
+    @keyframes floatIn {
+  0% { transform: scale(0.95); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+    .birthday-section {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: opacity 0.5s ease;
+    }
+</style>
+
+<body data-page-gender="🇮🇶👧">
+    <!-- Load shared gender system -->
+    <script src="js/gender-system.js"></script>
+    
+    <audio src="https://laily.org/themes/0DoYouLoveMe/assets/foreveryoung.mp3" id="linkmp3" class="sembunyi" loop></audio>
+    <div class="overlay">
+        <div class="loading-message">
+            <span data-gender="🇮🇶👧">هلو عمري<br> جاي نجهزلج هديتج قلبي ثواني انتظري</span>
+            <span data-gender="🇮🇶👦">هلو عمري<br> جاي نجهزلك هديتك قلبي ثواني انتظر</span>
+            <span data-gender="🇯🇴👧">هلا حبيبتي<br> جاية جهزلك هديتك قلبي ثواني استني</span>
+            <span data-gender="🇯🇴👦">هلا حبيبي<br> جاي جهزلك هديتك قلبي ثواني استنى</span>
+            <span data-gender="🇺🇸👧 🇺🇸👦">Hey you!<br>Please wait...</span>
+        </div>
+        <div id="loveIn" class="blocklove">
+            <a href="https://laily.org/themes/0DoYouLoveMe/#" target="_blank" class="lovein"></a>
+            <p id="ket">
+                <span data-gender="🇮🇶👧">انتِ آية؟ 🥹</span>
+                <span data-gender="🇮🇶👦">انت آية؟ 🥹</span>
+                <span data-gender="🇯🇴👧">انتي آية؟ 🥹</span>
+                <span data-gender="🇯🇴👦">انت آية؟ 🥹</span>
+                <span data-gender="🇺🇸👧">Are you آية? 🥹</span>
+                <span data-gender="🇺🇸👦">Are you آية? 🥹</span>
+            </p>
+        </div>
+    </div>
+
+    <div id="bodyblur">
+        <img src="themes/0DoYouLoveMe/assets/wp2.jpeg" id="wallpaper" />
+        <div id="thisblur"></div>
+    </div>
+
+    <!-- Swiper -->
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+
+            <div class="swiper-slide">
+                <div id="stikerHello" class="scale0 stiker">
+                    <img src="themes/0DoYouLoveMe/assets/pusn.gif" />
+                </div>
+                <h1 id="teksHello" class="scale0 quicksand" style="font-size: 20px;">
+                    <span data-gender="🇮🇶👧 🇮🇶👦">هلوو آية 🫢</span>
+                    <span data-gender="🇯🇴👧 🇯🇴👦">هلا آية 🫢</span>
+                    <span data-gender="🇺🇸👧 🇺🇸👦">Hello آية 🫢</span>
+                    <br><br>  >>>>
+                </h1>
+                
+                <div id="TombolHello" class="scale0" style="margin-top: 20px; display: none;">
+                    <a onClick="swiper.slideNext();" style="
+                        display: inline-flex;
+                        align-items: center;
+                        margin: 10px;
+                        transition: all .2s ease;
+                        padding: 12px 20px;
+                        outline: 0;
+                        border: 2px solid white;
+                        border-radius: 12px;
+                        line-height: 15px;
+                        background: rgba(255, 182, 193, .3);
+                        color: white;
+                        font-size: 15px;
+                        font-weight: 700;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        box-shadow: rgba(255, 255, 255, 0.15) 0px 7px 29px 0px;
+                        z-index: 1;
+                        cursor: pointer;
+                        text-decoration: none;
+                    ">
+                        <span data-gender="🇮🇶👧 🇮🇶👦">التالي 👋</span>
+                        <span data-gender="🇯🇴👧 🇯🇴👦">التالي 👋</span>
+                        <span data-gender="🇺🇸👧 🇺🇸👦">Next 👋</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="swiper-slide">
+                <div id="stiker1" class="scale0 stiker">
+                    <img src="themes/0DoYouLoveMe/assets/blush_f66de951.gif" />
+                </div>
+                <h1 id="teks1" class="scale0 quicksand" style="font-size: 20px;">
+                    <span data-gender="🇮🇶👧">عنديي سؤال الجج 🌚</span>
+                    <span data-gender="🇮🇶👦">عندي سؤال الك 🌚</span>
+                    <span data-gender="🇯🇴👧">عندي سؤال إلك 🌚</span>
+                    <span data-gender="🇯🇴👦">عندي سؤال إلك 🌚</span>
+                    <span data-gender="🇺🇸👧 🇺🇸👦">I have a question for you 🌚</span>
+                    <br>
+                </h1>
+                
+                <div id="TombolCustom" class="scale0" style="margin-top: 20px;">
+                    <a id="BtnCustom" onClick="goToNextSection();" style="
+                        display: inline-flex;
+                        align-items: center;
+                        margin: 10px;
+                        transition: all .2s ease;
+                        padding: 12px 20px;
+                        outline: 0;
+                        border: 2px solid white;
+                        border-radius: 12px;
+                        line-height: 15px;
+                        background: rgba(255, 182, 193, .3);
+                        color: white;
+                        font-size: 15px;
+                        font-weight: 700;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        box-shadow: rgba(255, 255, 255, 0.15) 0px 7px 29px 0px;
+                        z-index: 1;
+                        cursor: pointer;
+                        text-decoration: none;
+                    ">
+                        <span data-gender="🇮🇶👧 🇮🇶👦">شنو هو 😒</span>
+                        <span data-gender="🇯🇴👧 🇯🇴👦">شو هو 😒</span>
+                        <span data-gender="🇺🇸👧 🇺🇸👦">What is it 😒</span>
+                    </a>
+                </div>
+            </div>
+
+
+
+            <div class="swiper-slide">
+                <div id="stiker2" class="scale0 stiker">
+                    <img id="stikerDuaDef" src="themes/0DoYouLoveMe/assets/blush_93a83215.gif" />
+                    <img id="stikerDua1" class="sembunyi" src="themes/0DoYouLoveMe/assets/blush_49ad15fd.gif" />
+                    <img id="stikerDua2" class="sembunyi" src="themes/0DoYouLoveMe/assets/blush_43a25e2e.gif" />
+                    <img id="stikerDua3" class="sembunyi" src="themes/0DoYouLoveMe/assets/blush_d4d33287.gif" />
+                </div>
+                <h1 id="teks2" class="scale0 quicksand" style="font-size: 19px;">
+                    <span data-gender="🇮🇶👧">تحبيني؟ 🙈🌚</span>
+                    <span data-gender="🇮🇶👦">تحبني؟ 🙈🌚</span>
+                    <span data-gender="🇯🇴👧">بتحبيني؟ 🙈🌚</span>
+                    <span data-gender="🇯🇴👦">بتحبني؟ 🙈🌚</span>
+                    <span data-gender="🇺🇸👧 🇺🇸👦">Do you love me? 🙈🌚</span>
+                </h1>
+                <div id="Tombol" style="opacity:0;transform: scale(0)">
+                    <a id="By" onClick="swiper.slideTo(3); setTimeout(function() { showBirthdaySection(1); }, 100);">
+                        <span data-gender="🇮🇶👧 🇮🇶👦">اي</span>
+                        <span data-gender="🇯🇴👧 🇯🇴👦">اه</span>
+                        <span data-gender="🇺🇸👧 🇺🇸👦">Yes</span>
+                    </a>
+                    <a id="Bn" onClick="btn='Bn';fungsibaru(btn)">
+                        <span data-gender="🇮🇶👧 🇮🇶👦">لااء 🌚🔪</span>
+                        <span data-gender="🇯🇴👧 🇯🇴👦">لأ 🌚🔪</span>
+                        <span data-gender="🇺🇸👧 🇺🇸👦">No 🌚🔪</span>
+                    </a>
+                </div>
+                <!-- Text when clicking "No" -->
+                <div id="teksTolakGroup" class="sembunyi">
+                    <p id="teksTolak">
+                        <span data-gender="🇮🇶👧 🇮🇶👦">هاي ليشششش 😡🥲</span>
+                        <span data-gender="🇯🇴👧 🇯🇴👦">هاي ليشششش 😡🥲</span>
+                        <span data-gender="🇺🇸👧 🇺🇸👦">Hey why 😡🥲</span>
+                    </p>
+                    <p id="teksTolak2">
+                        <span data-gender="🇮🇶👧">معقولة ما تحبيني؟ 🥹</span>
+                        <span data-gender="🇮🇶👦">معقول ما تحبني؟ 🥹</span>
+                        <span data-gender="🇯🇴👧">معقول ما بتحبيني؟ 🥹</span>
+                        <span data-gender="🇯🇴👦">معقول ما بتحبني؟ 🥹</span>
+                        <span data-gender="🇺🇸👧 🇺🇸👦">Really you don't love me? 🥹</span>
+                    </p>
+                    <p id="teksTolak3">
+                        <span data-gender="🇮🇶👧">ادري بيج تحبيني 😁💞</span>
+                        <span data-gender="🇮🇶👦">ادري بيك تحبني 😁💞</span>
+                        <span data-gender="🇯🇴👧">بعرف فيكي بتحبيني 😁💞</span>
+                        <span data-gender="🇯🇴👦">بعرف فيك بتحبني 😁💞</span>
+                        <span data-gender="🇺🇸👧 🇺🇸👦">I know you love me 😁💞</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- New Birthday Slide with 5 sections -->
+            <div class="swiper-slide">
+                <!-- Section 1 -->
+                <div id="bdaySection1" class="birthday-section">
+                    <div id="stikerBday1" class="scale0 stiker">
+                        <img src="themes/0DoYouLoveMe/assets/blush_b467ff66.gif" />
+                    </div>
+                    <h1 id="teksBday1" class="scale0 quicksand" style="font-size: 19px;">
+                        <span data-gender="🇮🇶👧">وانا احبج اكثر 🥹</span>
+                        <span data-gender="🇮🇶👦">وانا احبك اكثر 🥹</span>
+                        <span data-gender="🇯🇴👧">وأنا بحبك أكثر 🥹</span>
+                        <span data-gender="🇯🇴👦">وأنا بحبك أكثر 🥹</span>
+                        <span data-gender="🇺🇸👧 🇺🇸👦">And I love you more 🥹</span>
+                    </h1>
+                    <div id="TombolBday1" class="scale0" style="margin-top: 20px;">
+                        <a onClick="nextBirthdaySection(2);" style="
+                            display: inline-flex;
+                            align-items: center;
+                            margin: 10px;
+                            transition: all .2s ease;
+                            padding: 12px 20px;
+                            outline: 0;
+                            border: 2px solid white;
+                            border-radius: 12px;
+                            line-height: 15px;
+                            background: rgba(255, 182, 193, .3);
+                            color: white;
+                            font-size: 15px;
+                            font-weight: 700;
+                            white-space: nowrap;
+                            overflow: hidden;
+                            box-shadow: rgba(255, 255, 255, 0.15) 0px 7px 29px 0px;
+                            z-index: 1;
+                            cursor: pointer;
+                            text-decoration: none;
+                        ">
+                            <span data-gender="🇮🇶👧 🇮🇶👦">حبيبي 🥹❤️</span>
+                            <span data-gender="🇯🇴👧 🇯🇴👦">حبيبي 🥹❤️</span>
+                            <span data-gender="🇺🇸👧 🇺🇸👦">My love 🥹❤️</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Section 2 -->
+                <div id="bdaySection2" class="birthday-section sembunyi">
+                    <div id="stikerBday2" class="scale0 stiker">
+                        <img src="themes/0DoYouLoveMe/assets/blush_ae875322.gif" />
+                    </div>
+                    <h1 id="teksBday2" class="scale0 quicksand" style="font-size: 19px;">
+                        <span data-gender="🇮🇶👧 🇮🇶👦">بس اني اكثررر 🥹</span>
+                        <span data-gender="🇯🇴👧 🇯🇴👦">بس أنا أكثررر 🥹</span>
+                        <span data-gender="🇺🇸👧 🇺🇸👦">But I love you more 🥹</span>
+                    </h1>
+                    <div id="TombolBday2" class="scale0" style="margin-top: 20px;">
+                        <a onClick="nextBirthdaySection(3);" style="
+                            display: inline-flex;
+                            align-items: center;
+                            margin: 10px;
+                            transition: all .2s ease;
+                            padding: 12px 20px;
+                            outline: 0;
+                            border: 2px solid white;
+                            border-radius: 12px;
+                            line-height: 15px;
+                            background: rgba(255, 182, 193, .3);
+                            color: white;
+                            font-size: 15px;
+                            font-weight: 700;
+                            white-space: nowrap;
+                            overflow: hidden;
+                            box-shadow: rgba(255, 255, 255, 0.15) 0px 7px 29px 0px;
+                            z-index: 1;
+                            cursor: pointer;
+                            text-decoration: none;
+                        ">
+                            <span data-gender="🇮🇶👧 🇮🇶👦">ماا انيي ❤️</span>
+                            <span data-gender="🇯🇴👧 🇯🇴👦">لأأ أناا ❤️</span>
+                            <span data-gender="🇺🇸👧 🇺🇸👦">No me ❤️</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Section 3 -->
+                <div id="bdaySection3" class="birthday-section sembunyi">
+                    <div id="stikerBday3" class="scale0 stiker">
+                        <img src="themes/0DoYouLoveMe/assets/blush_e726f647.gif" />
+                    </div>
+                    <h1 id="teksBday3" class="scale0 quicksand" style="font-size: 19px;">
+                        <span data-gender="🇮🇶👧 🇮🇶👦">بكيفييي 🤭</span>
+                        <span data-gender="🇯🇴👧 🇯🇴👦">زي ما بدك 🤭</span>
+                        <span data-gender="🇺🇸👧 🇺🇸👦">As you wish 🤭</span>
+                    </h1>
+                    <div id="TombolBday3" class="scale0" style="margin-top: 20px;">
+                        <a onClick="nextBirthdaySection(4);" style="
+                            display: inline-flex;
+                            align-items: center;
+                            margin: 10px;
+                            transition: all .2s ease;
+                            padding: 12px 20px;
+                            outline: 0;
+                            border: 2px solid white;
+                            border-radius: 12px;
+                            line-height: 15px;
+                            background: rgba(255, 182, 193, .3);
+                            color: white;
+                            font-size: 15px;
+                            font-weight: 700;
+                            white-space: nowrap;
+                            overflow: hidden;
+                            box-shadow: rgba(255, 255, 255, 0.15) 0px 7px 29px 0px;
+                            z-index: 1;
+                            cursor: pointer;
+                            text-decoration: none;
+                        ">
+                            <span data-gender="🇮🇶👧 🇮🇶👦">اها! 😡</span>
+                            <span data-gender="🇯🇴👧 🇯🇴👦">يا! 😡</span>
+                            <span data-gender="🇺🇸👧 🇺🇸👦">Hey! 😡</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Section 4 - Final section goes to next slide -->
+                <div id="bdaySection4" class="birthday-section sembunyi">
+                    <div id="stikerBday4" class="scale0 stiker">
+                        <img src="themes/0DoYouLoveMe/assets/blush_d4d33287.gif" />
+                    </div>
+                    <h1 id="teksBday4" class="scale0 quicksand" style="font-size: 19px;">
+                        <span data-gender="🇮🇶👧">أحبببببج موتتتت 🥹</span>
+                        <span data-gender="🇮🇶👦">احبك موتتتت 🥹</span>
+                        <span data-gender="🇯🇴👧">بحبك كثييييير 🥹</span>
+                        <span data-gender="🇯🇴👦">بحبك كثييييير 🥹</span>
+                        <span data-gender="🇺🇸👧 🇺🇸👦">I love you so much 🥹</span>
+                    </h1>
+                    <div id="TombolBday4" class="scale0" style="margin-top: 20px;">
+                        <a onClick="goToLoveSlide();" style="
+                            display: inline-flex;
+                            align-items: center;
+                            margin: 10px;
+                            transition: all .2s ease;
+                            padding: 12px 20px;
+                            outline: 0;
+                            border: 2px solid white;
+                            border-radius: 12px;
+                            line-height: 15px;
+                            background: rgba(255, 182, 193, .3);
+                            color: white;
+                            font-size: 15px;
+                            font-weight: 700;
+                            white-space: nowrap;
+                            overflow: hidden;
+                            box-shadow: rgba(255, 255, 255, 0.15) 0px 7px 29px 0px;
+                            z-index: 1;
+                            cursor: pointer;
+                            text-decoration: none;
+                        ">
+                            <span data-gender="🇮🇶👧 🇮🇶👦">اني هم أحبك 🥹</span>
+                            <span data-gender="🇯🇴👧 🇯🇴👦">وأنا كمان بحبك 🥹</span>
+                            <span data-gender="🇺🇸👧 🇺🇸👦">I love you too 🥹</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="swiper-slide">
+                <div id="stiker3" class="scale0 stiker" style="margin-top:50px">
+                    <img id="stikerAkhir1" src="themes/0DoYouLoveMe/assets/cilukba.gif" />
+                    <img id="stikerAkhir2" class="sembunyi" src="themes/0DoYouLoveMe/assets/pandapanah.gif" />
+                    <img id="stikerAkhir3" class="sembunyi" src="themes/0DoYouLoveMe/assets/emawh.gif" />
+                </div>
+                <div id="scroll-container" class="blocktext">
+                    <h1 id="teks3" class="scale0 quicksand" style="font-size: 17px;font-weight:400">
+    <span id="subteks2a">
+        <span data-gender="🇮🇶👧">
+            <b> أحبججججججججججج</b><br>
+            وادري انتِ اكثر !! 😝
+        </span>
+        <span data-gender="🇮🇶👦">
+            <b> احبككككككك</b><br>
+            وادري انت اكثر !! 😝
+        </span>
+        <span data-gender="🇯🇴👧">
+            <b> بحبككككككك</b><br>
+            وبعرف إنك أكثر !! 😝
+        </span>
+        <span data-gender="🇯🇴👦">
+            <b> بحبككككككك</b><br>
+            وبعرف إنك أكثر !! 😝
+        </span>
+        <span data-gender="🇺🇸👧 🇺🇸👦">
+            <b> I love youuuuu</b><br>
+            and I know you love me more !! 😝
+        </span>
+    </span>
+    <span id="subteks2b">
+        <span data-gender="🇮🇶👧"><b>بس لو تدرين شگد أحبج  🥹💐💐</b></span>
+        <span data-gender="🇮🇶👦"><b>بس لو تدري شگد احبك  🥹💐💐</b></span>
+        <span data-gender="🇯🇴👧"><b>بس لو بتعرفي قديش بحبك  🥹💐💐</b></span>
+        <span data-gender="🇯🇴👦"><b>بس لو بتعرف قديش بحبك  🥹💐💐</b></span>
+        <span data-gender="🇺🇸👧 🇺🇸👦"><b>But if you knew how much I love you  🥹💐💐</b></span>
+    </span>
+</h1>
+
+<h1 id="teksTerakhir" class="sembunyi">
+    <span data-gender="🇮🇶👧">
+        اني احبجججج <b>حبببببب حبببببب<br>حبببببب</b> گد الكون <br>احبجججج!!!<br>🥹🥹💞💞🫶🫶🫶
+    </span>
+    <span data-gender="🇮🇶👦">
+        اني احبككك <b>حبببببب حبببببب<br>حبببببب</b> گد الكون <br>احبككك!!!<br>🥹🥹💞💞🫶🫶🫶
+    </span>
+    <span data-gender="🇯🇴👧">
+        أنا بحبككككك <b>كثيييير كثيييير<br>كثيييير</b> قد الكون <br>بحبككككك!!!<br>🥹🥹💞💞🫶🫶🫶
+    </span>
+    <span data-gender="🇯🇴👦">
+        أنا بحبككككك <b>كثيييير كثيييير<br>كثيييير</b> قد الكون <br>بحبككككك!!!<br>🥹🥹💞💞🫶🫶🫶
+    </span>
+    <span data-gender="🇺🇸👧 🇺🇸👦">
+        I love you <b>so so so<br>much</b> like the universe <br>I love you!!!<br>🥹🥹💞💞🫶🫶🫶
+    </span>
+</h1>
+
+<h1 id="teksTambahan" class="sembunyi">
+    <span id="teksLove">
+        <span data-gender="🇮🇶👧">احبجججج</span>
+        <span data-gender="🇮🇶👦">احبككك</span>
+        <span data-gender="🇯🇴👧">بحبككك</span>
+        <span data-gender="🇯🇴👦">بحبككك</span>
+        <span data-gender="🇺🇸👧 🇺🇸👦">I love you</span>
+    </span>
+</h1>
+
+                    <script>
+                        const loveEmojis = ['💙', '🩷', '❤️', '💜', '🧡'];
+                    </script>
+                </div>
+            </div>
+
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+    </div>
+
+    <div id="container">
+        <div class="wrapper">
+            <div class="box">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        var teksSekarang = 1;
+        const body = document.querySelector("body");
+        audio = new Audio('' + linkmp3.src);
+        var swiper = new Swiper(".mySwiper", {
+            allowTouchMove: false,
+            pagination: {
+                el: ".swiper-pagination",
+                dynamicBullets: false
+            },
+            on: {
+                slideChange: function() {
+                    const currentSlide = swiper.activeIndex;
+                    
+                    // Slide 0: Hello slide (هلوو)
+                    // Slide 1: Birthday question slide (عنديي سؤال الجج)
+                    // Slide 2: "Do you love me?" slide (بس تدرين اني أحبج أكثر؟)
+                    // Slide 3: Birthday sections slide (4 subsections)
+                    // Slide 4: Last love percentage slide
+                    
+                    if (currentSlide === 0) {
+                        // First hello slide
+                        teksSekarang = 1;
+                        const helloStiker = document.querySelector('#stikerHello');
+                        const helloTeks = document.querySelector('#teksHello');
+                        const helloTombol = document.querySelector('#TombolHello');
+                        
+                        setTimeout(function() {
+                            helloStiker.classList.add("scale1");
+                            helloTeks.classList.add("scale1");
+                            setTimeout(function() {
+                                helloTombol.classList.add("scale1");
+                            }, 300);
+                        }, 50);
+                    } else if (currentSlide === 1) {
+                        // Birthday question slide
+                        teksSekarang = 2;
+                        const stiker1 = document.querySelector('#stiker1');
+                        const teks1 = document.querySelector('#teks1');
+                        const tombolCustom = document.querySelector('#TombolCustom');
+                        
+                        setTimeout(function() {
+                            stiker1.classList.add("scale1");
+                            teks1.classList.add("scale1");
+                            setTimeout(function() {
+                                tombolCustom.classList.add("scale1");
+                            }, 300);
+                        }, 50);
+                    } else if (currentSlide === 2) {
+                        // "Do you love me?" slide
+                        teksSekarang = 3;
+                        teksScale = document.querySelector('#teks2');
+                        stikerScale = document.querySelector('#stiker2');
+                        Tombol = document.querySelector('#Tombol');
+                        
+                        setTimeout(function() {
+                            teksScale.classList.add("scale1");
+                            stikerScale.classList.add("scale1");
+                            Tombol.style = "opacity:1;transform: scale(1);"
+                        }, 50);
+                    } else if (currentSlide === 4) {
+                        // Last slide
+                        teksSekarang = 4;
+                        teksScale = document.querySelector('#teks3');
+                        stikerScale = document.querySelector('#stiker3');
+                        
+                        setTimeout(function() {
+                            teksScale.classList.add("scale1");
+                            stikerScale.classList.add("scale1");
+                            setTimeout(katanimasi, 300);
+                        }, 50);
+                    }
+                },
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev"
+            },
+        });
+
+        // Birthday section navigation
+        var currentBdaySection = 0;
+
+        function goToNextSection() {
+            // Go to slide index 2 (the "Do you love me?" slide)
+            swiper.slideTo(2);
+        }
+
+        function nextBirthdaySection(sectionNum) {
+            // Hide current section
+            const currentSection = document.getElementById('bdaySection' + currentBdaySection);
+            if (currentSection) {
+                currentSection.classList.add('sembunyi');
+            }
+            
+            // Show next section
+            showBirthdaySection(sectionNum);
+        }
+
+        function showBirthdaySection(num) {
+            currentBdaySection = num;
+            const section = document.getElementById('bdaySection' + num);
+            const stiker = document.getElementById('stikerBday' + num);
+            const teks = document.getElementById('teksBday' + num);
+            const tombol = document.getElementById('TombolBday' + num);
+
+            if (section && stiker && teks && tombol) {
+                section.classList.remove('sembunyi');
+                setTimeout(function() {
+                    stiker.classList.add('scale1');
+                    teks.classList.add('scale1');
+                    setTimeout(function() {
+                        tombol.classList.add('scale1');
+                    }, 300);
+                }, 50);
+            }
+        }
+
+        function goToLoveSlide() {
+            // Go to slide index 4 (the last love percentage slide)
+            // The slideChange event will handle the animations
+            swiper.slideTo(4);
+        }
+
+        // Use shared function to extract visible gender text
+        varsubteks2a = getVisibleHTML(subteks2a);
+        varsubteks2b = getVisibleHTML(subteks2b);
+
+        initeks = teks3.innerHTML;
+        teks3.innerHTML = "";
+
+        // Using shared typeArabicHTML function from gender-system.js
+
+        function katanimasi() {
+    const combinedText = varsubteks2a + "\n\n" + varsubteks2b;
+    typeArabicHTML(teks3, combinedText, 45, () => {
+        setTimeout(function() {
+            teksScale.classList.remove("scale1");
+            stikerScale.classList.remove("scale1");
+            teksScale.classList.add("scale0");
+            stikerScale.classList.add("scale0");
+            setTimeout(function() {
+                stikerAkhir1.src = stikerAkhir2.src;
+                teks3.innerHTML = "";
+            }, 450);
+            setTimeout(function() {
+                setTimeout(katanimasi2, 200);
+                teksScale.classList.remove("scale0");
+                stikerScale.classList.remove("scale0");
+                teksScale.classList.add("scale1");
+                stikerScale.classList.add("scale1");
+            }, 550);
+        }, 1400);
+    });
+}
+
+
+
+        initeksTerakhir = getVisibleHTML(teksTerakhir);
+        teksTerakhir.innerHTML = "";
+
+        function katanimasi2() {
+    typeArabicHTML(teks3, initeksTerakhir, 45, () => {
+        setTimeout(function() {
+            teks3.innerHTML += `<br><br><br><span id="teksLove">${defTeksLove} 1% ${ambilRandomEmoji}</span>`;
+            animateteksnim();
+        }, 300);
+    });
+}
+
+
+
+        const ambilRandomEmoji = loveEmojis[Math.floor(Math.random() * loveEmojis.length)];
+        const defTeksLove = getVisibleHTML(teksLove);
+        teksLove.innerHTML += " 1% " + ambilRandomEmoji;
+
+        function animateteksnim() {
+            let percent = 1000;
+            setTimeout(function() {
+                const intervalId = setInterval(() => {
+                    if (percent < 1000000) {
+                        percent += Math.floor(Math.random() * (10000 - 1000 + 1)) + 1000;
+                        const randomEmoji = loveEmojis[Math.floor(Math.random() * loveEmojis.length)];
+                        teksLove.innerHTML = `<b>${defTeksLove} ${percent}% ${randomEmoji}</b>`;
+                    } else {
+                        clearInterval(intervalId);
+                        setInterval(falling, 200);
+                        percent = 1000000;
+                        const randomEmoji = loveEmojis[Math.floor(Math.random() * loveEmojis.length)];
+                        teksLove.innerHTML = `<b>${defTeksLove} <span style='color:pink'>${percent}%</span> ${randomEmoji}</b>`;
+                        teksLove.style = "font-size:20px;transition:all .8s ease";
+                        stiker3.classList.remove("scale1");
+                        stiker3.classList.add("scale0");
+                        setTimeout(function() {
+                            stikerAkhir1.src = stikerAkhir3.src;
+                            stiker3.classList.remove("scale0");
+                            stiker3.classList.add("scale1");
+                        }, 400);
+                    }
+                }, 20);
+            }, 10);
+        }
+
+        initeks3 = teksTambahan.innerHTML;
+        teksTambahan.innerHTML = "";
+
+        function katanimasi3() {
+    teks3.innerHTML = "";
+    const stringsArray = Array.from({ length: 10 }, (_, i) => `Iloveyouuuu ${i + 1}% ${ambilRandomEmoji}`);
+    let idxString = 0;
+
+    function typeNextString() {
+        if (idxString < stringsArray.length) {
+            const currentText = stringsArray[idxString];
+
+            let idxLetter = 0;
+            function typeNextLetter() {
+                if (idxLetter < currentText.length) {
+                    teks3.innerHTML += currentText[idxLetter];
+                    idxLetter++;
+                    setTimeout(typeNextLetter, 50); // adjust speed per letter
+                } else {
+                    teks3.innerHTML += "<br>";
+                    idxString++;
+                    setTimeout(typeNextString, 100);
+                }
+            }
+
+            typeNextLetter();
+        } else {
+            teks3.innerHTML += `<br><br><span id="teksLove">${defTeksLove} 11% ${ambilRandomEmoji}</span>`;
+            setTimeout(animateteksnim, 100);
+            setTimeout(() => clearInterval(scrollInterval), 500);
+        }
+    }
+
+    typeNextString();
+}
+
+
+
+        var sudahKlik = true;
+        var fungsiBerfungsi = false;
+        
+        // Initialize love button using shared function
+        initGenderLoveButton('loveIn');
+
+        document.getElementById("loveIn").onclick = function() {
+            if (sudahKlik) {
+                audio.play();
+                document.querySelector(".overlay").style.display = "none";
+                wallpaper.style = "transform:scale(1)";
+                
+                // Trigger first slide animations
+                const helloStiker = document.querySelector('#stikerHello');
+                const helloTeks = document.querySelector('#teksHello');
+                const helloTombol = document.querySelector('#TombolHello');
+                
+                setTimeout(function() {
+                    helloStiker.classList.add("scale1");
+                    helloTeks.classList.add("scale1");
+                    setTimeout(function() {
+                        helloTombol.classList.add("scale1");
+                        fungsiBerfungsi = true;
+                    }, 300);
+                }, 50);
+            } else {
+                sudahKlik = true;
+                initGenderLoveButton('loveIn');
+            }
+        }
+
+        function falling() {
+            const heart = document.createElement("div");
+            heart.innerHTML = "<svg class='line spin' style='opacity:.5;z-index:100;stroke:#FFC2B8' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><g transform='translate(2.550170, 3.550158)'><path d='M0.371729633,8.89614246 C-0.701270367,5.54614246 0.553729633,1.38114246 4.07072963,0.249142462 C5.92072963,-0.347857538 8.20372963,0.150142462 9.50072963,1.93914246 C10.7237296,0.0841424625 13.0727296,-0.343857538 14.9207296,0.249142462 C18.4367296,1.38114246 19.6987296,5.54614246 18.6267296,8.89614246 C16.9567296,14.2061425 11.1297296,16.9721425 9.50072963,16.9721425 C7.87272963,16.9721425 2.09772963,14.2681425 0.371729633,8.89614246 Z'></path><path d='M13.23843,4.013842 C14.44543,4.137842 15.20043,5.094842 15.15543,6.435842'></path></g></svg>";
+            heart.className = "heart-icon";
+            heart.style.left = (Math.random() * 95) + "vw";
+            heart.style.animationDuration = (Math.random() * 3) + 2 + "s";
+            document.body.appendChild(heart);
+        }
+        setInterval(function() {
+            var heartArr = document.querySelectorAll(".heart-icon");
+            if (heartArr.length > 100) {
+                heartArr[0].remove();
+            }
+        }, 100);
+
+        const scrollContainer = document.getElementById("scroll-container");
+
+        function autoScroll() {
+            scrollContainer.scrollTop += 10;
+        }
+        const scrollInterval = setInterval(autoScroll, 50);
+
+        let jumlahKlik = 0;
+        let jumlahSkala = 1;
+        let sudah = false;
+        const pesanAlert = [getVisibleHTML(teksTolak), getVisibleHTML(teksTolak2), getVisibleHTML(teksTolak3)];
+        const teksDefault = getVisibleHTML(teks2);
+        const stikerArray = Array.from(document.querySelectorAll('img[id^="stikerDua"]'));
+        const stikerDefault = stikerDuaDef.src;
+
+        function fungsibaru(btn) {
+            var tombol = document.getElementById("" + btn);
+            var tombolParent = tombol.parentNode;
+
+            var tombolPosisiX = Math.floor(Math.random() * 50) + 1;
+            var tombolPosisiY = Math.floor(Math.random() * 75) + 1;
+            var rotasiAcak = Math.floor(Math.random() * 360);
+
+            tombol.style.position = "relative";
+            tombol.style.left = tombolPosisiX + "px";
+            tombol.style.top = tombolPosisiY + "px";
+            tombol.style.transform = "rotate(" + rotasiAcak + "deg)";
+            tombolParent.appendChild(tombol);
+
+            if (jumlahKlik < pesanAlert.length) {
+                // Get the elements for slide 3 (Do you love me? slide)
+                const teks2Element = document.querySelector('#teks2');
+                const stiker2Element = document.querySelector('#stiker2');
+                
+                teks2Element.classList.remove("scale1");
+                teks2Element.classList.add("scale0");
+                stiker2Element.classList.remove("scale1");
+                stiker2Element.classList.add("scale0");
+                setTimeout(function() {
+                    if (jumlahKlik === 0) {
+                        stikerDuaDef.src = stikerDefault;
+                        teks2.innerHTML = teksDefault;
+                    } else {
+                        stikerDuaDef.src = stikerArray[jumlahKlik].src;
+                        teks2.innerHTML = pesanAlert[jumlahKlik - 1];
+                    }
+                    stiker2Element.classList.remove("scale0");
+                    stiker2Element.classList.add("scale1");
+                    teks2Element.classList.remove("scale0");
+                    teks2Element.classList.add("scale1");
+                }, 270);
+            }
+
+            var tombolBy = document.getElementById("By");
+            tombolBy.style.transform = `scale(${1 + jumlahSkala * 0.2})`;
+
+            jumlahKlik++;
+            jumlahSkala++;
+
+            if (jumlahKlik == 4) {
+                // Go to slide 3 (birthday sections) and show first section
+                swiper.slideTo(3);
+                setTimeout(function() {
+                    showBirthdaySection(1);
+                }, 100);
+                jumlahKlik = 0;
+
+                const teks2Element = document.querySelector('#teks2');
+                const stiker2Element = document.querySelector('#stiker2');
+                
+                teks2Element.classList.remove("scale1");
+                teks2Element.classList.add("scale0");
+                stiker2Element.classList.remove("scale1");
+                stiker2Element.classList.add("scale0");
+                setTimeout(function() {
+                    stikerDuaDef.src = stikerDefault;
+                    teks2.innerHTML = teksDefault;
+                    stiker2Element.classList.remove("scale0");
+                    stiker2Element.classList.add("scale1");
+                    teks2Element.classList.remove("scale0");
+                    teks2Element.classList.add("scale1");
+                }, 400);
+            }
+        }
+
+        function fungsiTerima() {
+            Swal.fire({
+                title: '' + teksTolak.innerHTML,
+                imageUrl: '' + stikerTolak.src,
+                imageWidth: 90,
+                imageHeight: 90,
+                imageAlt: 'by aoudumber.dev',
+                confirmButtonText: 'OK',
+                showConfirmButton: false,
+                allowOutsideClick: false,
+                timer: 2200,
+                timerProgressBar: true,
+            }).then(() => {
+                Swal.fire({
+                    title: '' + teksTolak2.innerHTML,
+                    imageUrl: '' + stikerTolak2.src,
+                    imageWidth: 90,
+                    imageHeight: 90,
+                    imageAlt: 'by aoudumber.dev',
+                    confirmButtonText: 'OK',
+                    showConfirmButton: false,
+                    allowOutsideClick: false,
+                    timer: 2200,
+                    timerProgressBar: true,
+                });
+            });
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.code === 'Space' || event.code === 'ArrowRight') {
+                swiper.slideNext();
+            }
+        });
+
+        document.addEventListener('click', function(e) {
+            // Don't trigger slide change if clicking on a button or link
+            if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON' || e.target.closest('a') || e.target.closest('button')) {
+                return;
+            }
+            
+            if (teksSekarang !== 2) {
+                if (fungsiBerfungsi === true) {
+                    swiper.slideNext();
+                }
+            }
+        });
+
+        // Start All
+        var overlayMsg = document.querySelector(".loading-message");
+        overlayMsg.style.display = "none";
+        var loveBlock = document.querySelector(".blocklove");
+        loveBlock.style.display = "flex";
+    </script>
+
+    
+<!-- Trigger button -->
+<button id="warningTrigger" style="
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 18px; 
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  color: #fff;
+  background: transparent;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  font-size: 12px;
+  z-index: 100001;
+  animation: pulse 1.5s infinite;
+  pointer-events: auto; /* ensure it can receive mouse events */
+  
+">
+  <i class="fas fa-exclamation"></i>
+</button>
+
+<!-- Popup overlay -->
+<div id="popupOverlay" style="
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 100000;
+">
+
+  <!-- Glass card -->
+  <div id="popupCard" style="
+    width: 100%;
+    max-width: 420px;
+    background: rgba(255,255,255,0.6);
+    backdrop-filter: blur(8px);
+    border-radius: 18px;
+    padding: 28px;
+    text-align: right;
+    direction: rtl;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.35), 0 0 80px rgba(255,255,255,0.05);
+    transform: scale(0.95);
+    opacity: 0;
+    transition: all 0.25s ease-out;
+    z-index: 100001;
+  ">
+
+    <!-- Close button on right -->
+    <button id="closePopup" style="
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      border: none;
+      background: transparent;
+      color: #111;
+      font-size: 18px;
+      cursor: pointer;
+      z-index: 100002;
+      pointer-events: auto;
+    ">
+      <i class="fas fa-times"></i>
+    </button>
+
+    <p style="margin:0 0 16px; font-size:16px; color:#111; line-height:1.6;">
+      <span data-gender="🇮🇶👧">تم عمل هذا الموقع كـ هدية الج من حبيب قلبج ❤️</span>
+      <span data-gender="🇮🇶👦">تم عمل هذا الموقع كـ هدية الك من حبيب قلبك ❤️</span>
+      <span data-gender="🇯🇴👧">تم عمل هذا الموقع كـ هدية إلك من حبيب قلبك ❤️</span>
+      <span data-gender="🇯🇴👦">تم عمل هذا الموقع كـ هدية إلك من حبيب قلبك ❤️</span>
+      <span data-gender="🇺🇸👧">This website was made as a gift for you from your beloved ❤️</span>
+      <span data-gender="🇺🇸👦">This website was made as a gift for you from your beloved ❤️</span>
+    </p>
+
+    <p style="margin:0 0 16px; font-size:16px; color:#111; line-height:1.6;">
+      <span data-gender="🇮🇶👧">اكتشفي الثيمات المتوفرة وتواصلي مع الشركة القائمة على مواقع الهدايا اذا رغبتي بشراء موقع للي تحبين.</span>
+      <span data-gender="🇮🇶👦">اكتشف الثيمات المتوفرة وتواصل مع الشركة القائمة على مواقع الهدايا اذا رغبت بشراء موقع للي تحب.</span>
+      <span data-gender="🇯🇴👧">اكتشفي الثيمات المتوفرة وتواصلي مع الشركة القائمة على مواقع الهدايا إذا رغبتي بشراء موقع للي بتحبي.</span>
+      <span data-gender="🇯🇴👦">اكتشف الثيمات المتوفرة وتواصل مع الشركة القائمة على مواقع الهدايا إذا رغبت بشراء موقع للي بتحب.</span>
+      <span data-gender="🇺🇸👧">Discover available themes and contact the company behind gift websites if you wish to buy a website for your loved one.</span>
+      <span data-gender="🇺🇸👦">Discover available themes and contact the company behind gift websites if you wish to buy a website for your loved one.</span>
+    </p>
+
+    <!-- Buttons -->
+    <div style="display:flex; justify-content:center; gap:12px; width:100%; margin-top:20px; flex-wrap:wrap;">
+      <a href="index.html" target="_blank" style="
+        flex:1 1 140px;
+        text-align:center;
+        padding:12px 20px;
+        border-radius:10px;
+        background:#1e90ff;
+        color:#fff;
+        font-weight:700;
+        font-size:16px;
+        text-decoration:none;
+        pointer-events: auto;
+        transition: all 0.2s ease;
+      " onmouseover="this.style.transform='scale(1.05)';" onmouseout="this.style.transform='scale(1)';">
+        <span data-gender="🇮🇶👧 🇮🇶👦">شوف الثيمات المتوفرة</span>
+        <span data-gender="🇯🇴👧 🇯🇴👦">شوف الثيمات المتوفرة</span>
+        <span data-gender="🇺🇸👧 🇺🇸👦">View Available Themes</span>
+      </a>
+
+    </div>
+
+    <small style="display:block; margin-top:16px; font-size:13px; color:#111;">
+      <span data-gender="🇮🇶👧 🇮🇶👦">ملاحظة: احنا مو مسؤولين عن الاستخدام الخاطئ لهذه المواقع</span>
+      <span data-gender="🇯🇴👧 🇯🇴👦">ملاحظة: نحن غير مسؤولين عن الاستخدام الخاطئ لهذه المواقع</span>
+      <span data-gender="🇺🇸👧 🇺🇸👦">Note: We are not responsible for misuse of these websites</span>
+    </small>
+  </div>
+</div>
+
+<!-- Inline JS -->
+<script>
+  const trigger = document.getElementById('warningTrigger');
+  const overlay = document.getElementById('popupOverlay');
+  const card = document.getElementById('popupCard');
+  const closeBtn = document.getElementById('closePopup');
+
+  function showPopup() {
+    overlay.style.display = 'flex';
+    card.style.animation = 'floatIn 0.3s ease-out forwards';
+  }
+
+  function hidePopup() {
+    card.style.animation = 'none';
+    card.style.transform = 'scale(0.95)';
+    card.style.opacity = '0';
+    setTimeout(() => { overlay.style.display = 'none'; }, 250);
+  }
+
+  trigger.addEventListener('click', showPopup);
+  closeBtn.addEventListener('click', hidePopup);
+  overlay.addEventListener('click', e => { if(e.target===overlay) hidePopup(); });
+  document.addEventListener('keydown', e => { if(e.key==='Escape') hidePopup(); });
+</script>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" /></body>
+
+</body>
+
+</html>

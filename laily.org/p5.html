@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+      <span data-gender="🇮🇶👧 🇮🇶👦">هدية الى ليلي</span>
+      <span data-gender="🇯🇴👧 🇯🇴👦">هدية إلى ليلي</span>
+      <span data-gender="🇺🇸👧 🇺🇸👦">Gift for ليلي</span>
+    </title>
+    <!-- Credits to the writter "@ricardoolivaalonso" follow him on 👉 https://codepen.io/ricardoolivaalonso -->
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Lemonada:wght@300;400;500;600;700&display=swap');
+
+
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        background: linear-gradient(135deg, #FF8FB7, #E83C91);
+        -webkit-font-smoothing: antialiased;
+        font-family: 'Lemonada', 'Martian Mono', sans-serif;
+      }
+
+      .webgl {
+        position: fixed;
+        top: 0;
+        left: 0;
+        outline: none;
+        z-index: -1;
+      }
+
+      h1 {
+        font-size: 2rem;
+        text-transform: uppercase;
+        font-weight: 100;
+        color: white;
+      }
+
+      
+      /* Page header for holiday message */
+.page-header {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 2rem 1rem 1rem 1rem;
+  pointer-events: none;
+  font-family: 'Lemonada', cursive;
+  font-size: 3rem;        /* large, festive size */
+  color: #ff4d4d;         /* bright red color */
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.3); /* subtle shadow for depth */
+}
+
+      #loader {
+        display: grid;
+        place-content: center;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background-color: #b7d4c8ee;
+        backdrop-filter: blur(5px);
+      }
+      @keyframes floatIn {
+  0% { transform: scale(0.95); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+    </style>
+  <style>
+        /* Preview Banner */
+        .preview-banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #dc3545;
+            color: white;
+            text-align: center;
+            padding: 12px 50px 12px 20px;
+            font-weight: bold;
+            z-index: 9999;
+            font-size: 14px;
+            animation: slideDown 0.4s ease-out;
+            font-family: 'Arial', sans-serif;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+        }
+
+        .preview-banner-text {
+            display: inline-block;
+            max-width: calc(100% - 60px);
+            line-height: 1.4;
+        }
+
+        .preview-banner-close {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.25);
+            border: none;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            line-height: 1;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .preview-banner-close:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: translateY(-50%) rotate(90deg);
+        }
+
+        body.preview-active {
+            padding-top: 50px;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 600px) {
+            .preview-banner {
+                font-size: 12px;
+                padding: 10px 45px 10px 15px;
+            }
+            
+            body.preview-active {
+                padding-top: 45px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .preview-banner {
+                font-size: 10px;
+                padding: 8px 40px 8px 12px;
+            }
+            
+            body.preview-active {
+                padding-top: 40px;
+            }
+        }
+    </style>
+</head>
+  <body>
+<div class="preview-banner" id="previewBanner">
+        <span class="preview-banner-text">
+            <strong>وضع المعاينة:</strong> هذا رابط معاينة فقط. تواصل مع متجرنا لإنشاء رابط شخصي لحبيبك!
+        </span>
+        <button class="preview-banner-close" onclick="closePreviewBanner()" aria-label="إغلاق">×</button>
+    </div>
+
+    <!-- Load shared gender system -->
+    <script src="js/gender-system.js"></script>
+    
+    <div class="page-header">
+      <h1>
+        <span data-gender="🇮🇶👧 🇮🇶👦">كل عام واحنا سوة ليلي</span>
+        <span data-gender="🇯🇴👧 🇯🇴👦">كل سنة واحنا سوا ليلي</span>
+        <span data-gender="🇺🇸👧 🇺🇸👦">Happy New Year ليلي</span>
+      </h1>
+    </div>
+    <canvas class="webgl"></canvas>
+    <script type="x-shader/x-vertex" id="vertexshaderCandle">
+      void main() {
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+      }
+    </script>
+
+    <script type="x-shader/x-fragment" id="fragmentshaderCandle">
+      uniform float time; 
+      uniform float colorSpeed;
+      uniform float delay; 
+      uniform vec3 baseColor;
+      uniform vec3 finalColor;
+      varying vec2 vUv;
+
+      void main() {
+        float animatedTime = time - delay;
+        animatedTime = mod(animatedTime, colorSpeed);
+        float mixFactor = animatedTime / colorSpeed;
+        vec3 finalColor = mix(baseColor, finalColor, mixFactor);
+        gl_FragColor = vec4(finalColor, 1.0);
+      }
+    </script>
+
+    <script type="module">
+      import * as THREE from "https://esm.sh/three@0.151.3"
+
+      import { OrbitControls } from "https://esm.sh/three@0.151.3/addons/controls/OrbitControls.js"
+      import { OutlineEffect } from "https://esm.sh/three@0.151.3/addons/effects/OutlineEffect.js"
+      import { GLTFLoader } from "https://esm.sh/three@0.151.3/examples/jsm/loaders/GLTFLoader.js"
+
+
+
+      //==========
+      //**********
+      const _VS = `
+      uniform float pointMultiplier;
+
+      attribute float size;
+      attribute float angle;
+      attribute vec4 aColor;
+
+      varying vec4 vColor;
+      varying vec2 vAngle;
+
+      void main() {
+        vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+
+        gl_Position = projectionMatrix * mvPosition;
+        gl_PointSize = size * pointMultiplier / gl_Position.w;
+
+        vAngle = vec2(cos(angle), sin(angle));
+        vColor = aColor;
+      }`;
+
+      const _FS = `
+      uniform sampler2D diffuseTexture;
+
+      varying vec4 vColor;
+      varying vec2 vAngle;
+
+      void main() {
+        vec2 coords = (gl_PointCoord - 0.5) * mat2(vAngle.x, vAngle.y, -vAngle.y, vAngle.x) + 0.5;
+        gl_FragColor = texture2D(diffuseTexture, coords) * vColor;
+      }`;
+
+
+      function getLinearSpline(lerp) {
+
+        const points = [];
+        const _lerp = lerp;
+
+        function addPoint(t, d) {
+          points.push([t, d]);
+        }
+
+        function getValueAt(t) {
+          let p1 = 0;
+
+          for (let i = 0; i < points.length; i++) {
+            if (points[i][0] >= t) {
+              break;
+            }
+            p1 = i;
+          }
+
+          const p2 = Math.min(points.length - 1, p1 + 1);
+
+          if (p1 == p2) {
+            return points[p1][1];
+          }
+
+          return _lerp(
+            (t - points[p1][0]) / (
+              points[p2][0] - points[p1][0]),
+            points[p1][1], points[p2][1]);
+        }
+        return { addPoint, getValueAt };
+      }
+
+      function getParticleSystem(params) {
+        const { camera, emitter, parent, rate, texture } = params;
+        const uniforms = {
+          diffuseTexture: {
+            value: new THREE.TextureLoader().load(texture)
+          },
+          pointMultiplier: {
+            value: window.innerHeight / (2.0 * Math.tan(30.0 * Math.PI / 180.0))
+          }
+        };
+        const _material = new THREE.ShaderMaterial({
+          uniforms: uniforms,
+          vertexShader: _VS,
+          fragmentShader: _FS,
+          blending: THREE.AdditiveBlending,
+          depthTest: true,
+          depthWrite: false,
+          transparent: true,
+          vertexColors: true
+        });
+
+        let _particles = [];
+
+        const geometry = new THREE.BufferGeometry();
+        geometry.setAttribute('position', new THREE.Float32BufferAttribute([], 3));
+        geometry.setAttribute('size', new THREE.Float32BufferAttribute([], 1));
+        geometry.setAttribute('aColor', new THREE.Float32BufferAttribute([], 4));
+        geometry.setAttribute('angle', new THREE.Float32BufferAttribute([], 1));
+
+        const _points = new THREE.Points(geometry, _material);
+
+        parent.add(_points);
+
+        const alphaSpline = getLinearSpline((t, a, b) => {
+          return a + t * (b - a);
+        });
+        alphaSpline.addPoint(0.0, 0.0);
+        alphaSpline.addPoint(0.6, 1.0);
+        alphaSpline.addPoint(1.0, 0.0);
+
+        const colorSpline = getLinearSpline((t, a, b) => {
+          const c = a.clone();
+          return c.lerp(b, t);
+        });
+        colorSpline.addPoint(0.0, new THREE.Color(0xFFFFFF));
+        colorSpline.addPoint(1.0, new THREE.Color(0xff8080));
+
+        const sizeSpline = getLinearSpline((t, a, b) => {
+          return a + t * (b - a);
+        });
+        sizeSpline.addPoint(0.0, 0.0);
+        sizeSpline.addPoint(1.0, 1.0);
+        const radius = 0.5;
+        const maxLife = 1.5;
+        const maxSize = 3.0;
+        let gdfsghk = 0.0;
+        function _AddParticles(timeElapsed) {
+          gdfsghk += timeElapsed;
+          const n = Math.floor(gdfsghk * rate);
+          gdfsghk -= n / rate;
+          for (let i = 0; i < n; i += 1) {
+            const life = (Math.random() * 0.75 + 0.25) * maxLife;
+            _particles.push({
+              position: new THREE.Vector3(
+                (Math.random() * 1.5 - 1) * radius,
+                (Math.random() * .125 - 1) * radius,
+                (Math.random() * 1.5 - 1) * radius).add(emitter.position),
+              size: (Math.random() * 0.5 + 0.5) * maxSize,
+              colour: new THREE.Color(),
+              alpha: 1.0,
+              life: life,
+              maxLife: life,
+              rotation: Math.random() * 2.0 * Math.PI,
+              rotationRate: Math.random() * 0.01 - 0.005,
+              velocity: new THREE.Vector3(0, 1.5, 0),
+            });
+          }
+        }
+
+        function _UpdateGeometry() {
+          const positions = [];
+          const sizes = [];
+          const colours = [];
+          const angles = [];
+
+          for (let p of _particles) {
+            positions.push(p.position.x, p.position.y, p.position.z);
+            colours.push(p.colour.r, p.colour.g, p.colour.b, p.alpha);
+            sizes.push(p.currentSize);
+            angles.push(p.rotation);
+          }
+
+          geometry.setAttribute(
+            'position', new THREE.Float32BufferAttribute(positions, 3));
+          geometry.setAttribute(
+            'size', new THREE.Float32BufferAttribute(sizes, 1));
+          geometry.setAttribute(
+            'aColor', new THREE.Float32BufferAttribute(colours, 4));
+          geometry.setAttribute(
+            'angle', new THREE.Float32BufferAttribute(angles, 1));
+
+          geometry.attributes.position.needsUpdate = true;
+          geometry.attributes.size.needsUpdate = true;
+          geometry.attributes.aColor.needsUpdate = true;
+          geometry.attributes.angle.needsUpdate = true;
+        }
+        _UpdateGeometry();
+
+        function _UpdateParticles(timeElapsed) {
+          for (let p of _particles) {
+            p.life -= timeElapsed;
+          }
+
+          _particles = _particles.filter(p => {
+            return p.life > 0.0;
+          });
+
+          for (let p of _particles) {
+            const t = 1.0 - p.life / p.maxLife;
+            p.rotation += p.rotationRate;
+            p.alpha = alphaSpline.getValueAt(t);
+            p.currentSize = p.size * sizeSpline.getValueAt(t);
+            p.colour.copy(colorSpline.getValueAt(t));
+
+            p.position.add(p.velocity.clone().multiplyScalar(timeElapsed));
+
+            const drag = p.velocity.clone();
+            drag.multiplyScalar(timeElapsed * 0.1);
+            drag.x = Math.sign(p.velocity.x) * Math.min(Math.abs(drag.x), Math.abs(p.velocity.x));
+            drag.y = Math.sign(p.velocity.y) * Math.min(Math.abs(drag.y), Math.abs(p.velocity.y));
+            drag.z = Math.sign(p.velocity.z) * Math.min(Math.abs(drag.z), Math.abs(p.velocity.z));
+            p.velocity.sub(drag);
+          }
+
+          _particles.sort((a, b) => {
+            const d1 = camera.position.distanceTo(a.position);
+            const d2 = camera.position.distanceTo(b.position);
+
+            if (d1 > d2) {
+              return -1;
+            }
+            if (d1 < d2) {
+              return 1;
+            }
+            return 0;
+          });
+        }
+
+        function update(timeElapsed) {
+          _AddParticles(timeElapsed);
+          _UpdateParticles(timeElapsed);
+          _UpdateGeometry();
+        }
+        return { update };
+      }
+
+      export { getParticleSystem };
+
+      //**********
+      //==========
+      const canvas = document.querySelector('canvas.webgl')
+      // const loaderScreen = document.querySelector('#loader')
+      const scene = new THREE.Scene()
+      const gltfLoader = new GLTFLoader()
+      const textureLoader = new THREE.TextureLoader()
+      const sizes = {
+          width: window.innerWidth,
+          height: window.innerHeight
+      }
+      const camera = new THREE.PerspectiveCamera(10, sizes.width / sizes.height, 0.1, 1000)
+      const controls = new OrbitControls(camera, canvas)
+      const minPan = new THREE.Vector3( -5, -2, -5 )
+      const maxPan = new THREE.Vector3( 5, 2, 5 )
+      let clock = new THREE.Clock()
+      let mixer
+
+      const renderer = new THREE.WebGLRenderer({
+          canvas: canvas,
+          alpha: true,
+          antialias: true,
+      })
+
+      const effect = new OutlineEffect( renderer, {
+          defaultThickness: 0.0014,
+        defaultColor: new THREE.Color(0x202020).toArray(),
+        defaultAlpha: 1,
+        defaultVisible: true
+      } )
+      renderer.setSize(sizes.width, sizes.height)
+
+      //****************** */
+      //****************** */
+
+      const getLights = () => {
+          const ambientLight = new THREE.AmbientLight("#ffffff", .9)
+          scene.add(ambientLight)
+          
+          
+          const light = new THREE.DirectionalLight( '#ffffff' )
+          scene.add( light )
+          light.position.set(-2,5,0)
+          light.intensity = .35
+      }
+
+      const getControls = () => {
+          controls.enableDamping = true
+          controls.enableZoom = true
+          controls.enablePan = true
+          controls.minPolarAngle = Math.PI / 5
+          controls.maxPolarAngle = Math.PI / 2
+          controls.minDistance = 20 
+          controls.maxDistance = 47
+      }
+
+      const getModels = () => {
+          gltfLoader.load(
+              'https://rawcdn.githack.com/ricardoolivaalonso/threejs-journey01/e3cfc35a8270972a21435ad885da2bab54ec2d11/model.glb',
+              (gltf) => {
+                  gltf.scene.traverse( child => {
+                      child.material = bakedMaterial 
+                  })
+                  scene.add(gltf.scene)
+                  scene.position.set(0,-.3,0)
+              }
+          )
+          
+          gltfLoader.load(
+              'https://rawcdn.githack.com/ricardoolivaalonso/threejs-journey01/e3cfc35a8270972a21435ad885da2bab54ec2d11/model2.glb',
+              (gltf) => {
+                  gltf.scene.traverse( child => {
+                      if(child.material) {
+                          if(child.material.name == 'SnowSimple') child.material = snowMaterial 
+                          if(child.material.name == 'Window') child.material = windowMaterial 
+                          if(child.material.name == 'NeonBase') child.material = neonBaseMaterial 
+                          if(child.material.name == 'Neon.001') child.material = neonMaterial2 
+                          if(child.material.name == 'Neon') child.material = neonMaterial 
+                          if(child.material.name == 'Fire') child.material = fireMaterial 
+                      }
+                  })
+                  const animations = gltf.animations
+                  mixer = new THREE.AnimationMixer(gltf.scene)
+                  animations.forEach( clip => mixer.clipAction(clip).play())
+          
+                  scene.add(gltf.scene)
+                  scene.position.set(0,-.3,0)
+                  // loaderScreen.style.display = 'none'
+              }
+          )
+      }
+
+      const getCamera = () => {
+          camera.position.x = 35
+          camera.position.y = 8
+          camera.position.z = 36
+          scene.add(camera)
+      }
+
+      //****************** */
+      //****************** */
+      const bakedTexture = textureLoader.load('https://rawcdn.githack.com/ricardoolivaalonso/threejs-journey01/e3cfc35a8270972a21435ad885da2bab54ec2d11/baked.jpg')
+      bakedTexture.flipY = false
+
+      const bakedMaterial = new THREE.MeshStandardMaterial({ 
+          map: bakedTexture,
+          side: THREE.DoubleSide,
+          roughness: .5,
+      })
+
+      const snowMaterial = new THREE.MeshPhysicalMaterial({ 
+          color: 0xeeeeee,
+          roughness: .6,
+          metalness: .1,
+          reflectivity: .75,
+      })
+
+      const windowMaterial = new THREE.MeshBasicMaterial({ 
+          color: 0xFFDCC2,
+          side: THREE.DoubleSide,
+      })
+
+      const neonBaseMaterial = new THREE.MeshStandardMaterial({ 
+          emissive: 0xffffff,
+          side: THREE.DoubleSide,
+      })
+
+      const neonMaterial = new THREE.ShaderMaterial({
+          uniforms: {
+              time: { value: 1.0 }, 
+              delay: { value: 1.0 }, 
+              colorSpeed: { value: 5.0 }, 
+              baseColor: { value: new THREE.Color(0x9bcab6) },
+              finalColor: { value: new THREE.Color(0xffffff) }
+          },
+          vertexShader: document.getElementById( 'vertexshaderCandle' ).textContent,
+          fragmentShader: document.getElementById( 'fragmentshaderCandle' ).textContent,
+      })
+
+      const neonMaterial2 = new THREE.ShaderMaterial({
+          uniforms: {
+              time: { value: 1.0 }, 
+              delay: { value: 1.0 }, 
+              colorSpeed: { value: 5.0 }, 
+              baseColor: { value: new THREE.Color(0xe39f9f) },
+              finalColor: { value: new THREE.Color(0xffffff) }
+          },
+          vertexShader: document.getElementById( 'vertexshaderCandle' ).textContent,
+          fragmentShader: document.getElementById( 'fragmentshaderCandle' ).textContent,
+      })
+
+      const fireMaterial = new THREE.MeshPhongMaterial({ 
+          color: 0xffdab9,
+          side: THREE.DoubleSide,
+      })
+      fireMaterial.userData.outlineParameters = { thickness: 0 }
+
+
+      // Original Shader by Bobby Roe
+      // Original code: https://github.com/bobbyroe/Simple-Particle-Effects/blob/main/index.js
+
+      const geometry = new THREE.BoxGeometry(1, .01, .5)
+      const material = new THREE.MeshStandardMaterial({ color: 0xffffff })
+
+      const cube = new THREE.Mesh(geometry, material)
+      cube.position.y = -2.2
+      cube.position.z = -1.6
+      cube.position.x = .1
+      scene.add(cube)
+
+      const fireEffect = getParticleSystem({
+          camera,
+          emitter: cube,
+          parent: scene,
+          rate: 200,
+          texture: 'https://rawcdn.githack.com/ricardoolivaalonso/threejs-journey01/e3cfc35a8270972a21435ad885da2bab54ec2d11/fire.png'
+      })
+
+      //****************** */
+      //****************** */
+      const tick = () => {
+          window.requestAnimationFrame(tick)
+          let delta = clock.getDelta()
+          if ( mixer ) mixer.update( delta )
+
+          neonMaterial.uniforms.time.value += 0.075
+          neonMaterial2.uniforms.time.value += 0.09
+          fireEffect.update(0.016)
+          controls.update()
+          controls.target.clamp( minPan, maxPan )
+
+          renderer.render(scene, camera)
+        effect.render(scene, camera)
+      }
+
+      window.addEventListener('resize', () => {
+          sizes.width = window.innerWidth;
+          sizes.height = window.innerHeight;
+
+          camera.aspect = sizes.width / sizes.height;
+          camera.updateProjectionMatrix();
+
+          renderer.setSize(sizes.width, sizes.height);
+          renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      })
+
+      getModels()
+      getLights()
+      getControls()
+      getCamera()
+      tick()
+    </script>
+
+    
+<!-- Trigger button -->
+<button id="warningTrigger" style="
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 18px; 
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  color: #fff;
+  background: transparent;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  font-size: 12px;
+  z-index: 100001;
+  animation: pulse 1.5s infinite;
+  pointer-events: auto; /* ensure it can receive mouse events */
+  
+">
+  <i class="fas fa-exclamation"></i>
+</button>
+
+<!-- Popup overlay -->
+<div id="popupOverlay" style="
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 100000;
+">
+
+  <!-- Glass card -->
+  <div id="popupCard" style="
+    width: 100%;
+    max-width: 420px;
+    background: rgba(255,255,255,0.6);
+    backdrop-filter: blur(8px);
+    border-radius: 18px;
+    padding: 28px;
+    text-align: right;
+    direction: rtl;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.35), 0 0 80px rgba(255,255,255,0.05);
+    transform: scale(0.95);
+    opacity: 0;
+    transition: all 0.25s ease-out;
+    z-index: 100001;
+  ">
+
+    <!-- Close button on right -->
+    <button id="closePopup" style="
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      border: none;
+      background: transparent;
+      color: #111;
+      font-size: 18px;
+      cursor: pointer;
+      z-index: 100002;
+      pointer-events: auto;
+    ">
+      <i class="fas fa-times"></i>
+    </button>
+
+    <p style="margin:0 0 16px; font-size:16px; color:#111; line-height:1.6;">
+      <span data-gender="🇮🇶👧">تم عمل هذا الموقع كـ هدية الج من حبيب قلبج ❤️</span>
+      <span data-gender="🇮🇶👦">تم عمل هذا الموقع كـ هدية الك من حبيب قلبك ❤️</span>
+      <span data-gender="🇯🇴👧">تم عمل هذا الموقع كـ هدية إلك من حبيب قلبك ❤️</span>
+      <span data-gender="🇯🇴👦">تم عمل هذا الموقع كـ هدية إلك من حبيب قلبك ❤️</span>
+      <span data-gender="🇺🇸👧">This website was made as a gift for you from your beloved ❤️</span>
+      <span data-gender="🇺🇸👦">This website was made as a gift for you from your beloved ❤️</span>
+    </p>
+
+    <p style="margin:0 0 16px; font-size:16px; color:#111; line-height:1.6;">
+      <span data-gender="🇮🇶👧">اكتشفي الثيمات المتوفرة وتواصلي مع الشركة القائمة على مواقع الهدايا اذا رغبتي بشراء موقع للي تحبين.</span>
+      <span data-gender="🇮🇶👦">اكتشف الثيمات المتوفرة وتواصل مع الشركة القائمة على مواقع الهدايا اذا رغبت بشراء موقع للي تحب.</span>
+      <span data-gender="🇯🇴👧">اكتشفي الثيمات المتوفرة وتواصلي مع الشركة القائمة على مواقع الهدايا إذا رغبتي بشراء موقع لللي بتحبي.</span>
+      <span data-gender="🇯🇴👦">اكتشف الثيمات المتوفرة وتواصل مع الشركة القائمة على مواقع الهدايا إذا رغبت بشراء موقع لللي بتحب.</span>
+      <span data-gender="🇺🇸👧">Discover available themes and contact the company behind gift websites if you wish to buy a website for your loved one.</span>
+      <span data-gender="🇺🇸👦">Discover available themes and contact the company behind gift websites if you wish to buy a website for your loved one.</span>
+    </p>
+
+    <!-- Buttons -->
+    <div style="display:flex; justify-content:center; gap:12px; width:100%; margin-top:20px; flex-wrap:wrap;">
+      <a href="index.html" target="_blank" style="
+        flex:1 1 140px;
+        text-align:center;
+        padding:12px 20px;
+        border-radius:10px;
+        background:#1e90ff;
+        color:#fff;
+        font-weight:700;
+        font-size:16px;
+        text-decoration:none;
+        pointer-events: auto;
+        transition: all 0.2s ease;
+      " onmouseover="this.style.transform='scale(1.05)';" onmouseout="this.style.transform='scale(1)';">
+        رؤية الثيمات المتوفرة
+      </a>
+
+    </div>
+
+    <small style="display:block; margin-top:16px; font-size:13px; color:#111;">
+      <span data-gender="🇮🇶👧 🇮🇶👦">ملاحظة: احنا مو مسؤولين عن الاستخدام الخاطئ لهذه المواقع</span>
+      <span data-gender="🇯🇴👧 🇯🇴👦">ملاحظة: نحن غير مسؤولين عن الاستخدام الخاطئ لهذه المواقع</span>
+      <span data-gender="🇺🇸👧 🇺🇸👦">Note: We are not responsible for misuse of these websites</span>
+    </small>
+  </div>
+</div>
+
+<!-- Inline JS -->
+<script>
+  const trigger = document.getElementById('warningTrigger');
+  const overlay = document.getElementById('popupOverlay');
+  const card = document.getElementById('popupCard');
+  const closeBtn = document.getElementById('closePopup');
+
+  function showPopup() {
+    overlay.style.display = 'flex';
+    card.style.animation = 'floatIn 0.3s ease-out forwards';
+  }
+
+  function hidePopup() {
+    card.style.animation = 'none';
+    card.style.transform = 'scale(0.95)';
+    card.style.opacity = '0';
+    setTimeout(() => { overlay.style.display = 'none'; }, 250);
+  }
+
+  trigger.addEventListener('click', showPopup);
+  closeBtn.addEventListener('click', hidePopup);
+  overlay.addEventListener('click', e => { if(e.target===overlay) hidePopup(); });
+  document.addEventListener('keydown', e => { if(e.key==='Escape') hidePopup(); });
+</script>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" /><script>
+        function closePreviewBanner() {
+            const banner = document.getElementById('previewBanner');
+            banner.style.animation = 'slideUp 0.3s ease-in';
+            
+            setTimeout(() => {
+                banner.style.display = 'none';
+                document.body.classList.remove('preview-active');
+            }, 300);
+        }
+
+        // Always show the banner on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            document.body.classList.add('preview-active');
+        });
+
+        // Optional: Close on ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closePreviewBanner();
+            }
+        });
+    </script>
+</body>
+
+  </body>
+</html>
